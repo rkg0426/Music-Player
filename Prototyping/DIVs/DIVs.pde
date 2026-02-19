@@ -29,7 +29,7 @@ rect( durationTimeDivX, durationTimeDivY, durationTimeDivWidth, durationTimeDivH
 rect( previousSongDivX, previousSongDivY, previousSongDivWidth, previousSongDivHeight );
 rect( skipbackButtonDivX, skipbackButtonDivY, skipbackButtonDivWidth, skipbackButtonDivHeight );
 rect( playButtonDivX, playButtonDivY, playButtonDivWidth, playButtonDivHeight );
-rect( fast-forwardButtonDivX, fast-forwardButtonDivY, fast-forwardButtonDivWidth, fast-forwardButtonDivHeight );
-rect( nextsongButtonDivX, nextsongButtonDivY, nextsongButtonDivWidth, nextsongButtonDivHeight );
+rect( fast-ForwardButtonDivX, fast-ForwardButtonDivY, fast-ForwardButtonDivWidth, fast-ForwardButtonDivHeight );
+rect( nextSongButtonDivX, nextSongButtonDivY, nextSongButtonDivWidth, nextSongButtonDivHeight );
 rect( modifyButtonDivX, modifyButtonDivY, modifyButtonDivWidth, modifyButtonDivHeight );
 rect( modifyBarDivX, modifyBarDivY, modifyBarDivWidth, modifyBarDivHeight );
