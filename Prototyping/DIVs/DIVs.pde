@@ -33,11 +33,3 @@ rect( fastForwardButtonDivX, fastForwardButtonDivY, fastForwardButtonDivWidth, f
 rect( nextSongButtonDivX, nextSongButtonDivY, nextSongButtonDivWidth, nextSongButtonDivHeight );
 rect( modifyButtonDivX, modifyButtonDivY, modifyButtonDivWidth, modifyButtonDivHeight );
 rect( modifyBarDivX, modifyBarDivY, modifyBarDivWidth, modifyBarDivHeight );
-float DivX = appWidth * 0.00 / Rewind;
-float DivY = appHeight * 0.03 / Rewind;
-float DivWidth = appWidth * 2 / Rewind;
-float DivHeight = appHeight * 1.3 / Rewind;
-float DivX = appWidth * 0.00 / SearchButton;
-float DivY = appHeight * 0.15 / SearchButton;
-float DivWidth = appWidth * 7.4 / SearchButton;
-float DivHeight = appHeight * 1.5 / SearchButton;
