@@ -8,10 +8,10 @@ int appHeight = displayHeight;
 //
 int paperWidth = 216;
 int paperHeight = 279;
-float DivX = appWidth * ??? / paperWidth;
-float DivY = appHeight * ??? / paperHeight;
-float DivWidth = appWidth * ??? / paperWidth;
-float DivHeight = appHeight * ??? / paperHeight;
+float DivX = appWidth * 216 / paperWidth;
+float DivY = appHeight * 279 / paperHeight;
+float DivWidth = appWidth * 216 / paperWidth;
+float DivHeight = appHeight * 279 / paperHeight;
 
 rect( rewindButtonDivX, rewindButtonDivY, rewindButtonDivWidth, rewindButtonDivHeight );
 rect( searchButtonDivX, searchButtonDivY, searchButtonDivWidth, searchButtonDivHeight );
