@@ -1,10 +1,14 @@
-println("Bye World");
+println("Bye Universe");
 //
 print("Bye");
-print("World");
+print("Universe");
 //
 print("Bye");
-print("\tWorld");
+print("\tUniverse");
 //
 print("Bye");
-print("\nWorld");
+print("\nUniverse");
+//
+println("Bye Universe");
+//
+print("Bye-bye");
