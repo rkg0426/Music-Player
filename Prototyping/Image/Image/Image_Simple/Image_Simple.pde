@@ -25,5 +25,5 @@ PImage image2 = loadImage(pathway2);
 PImage image3 = loadImage(pathway3);
 //
 image(image1, 0, 0);
-image(image2, 200, 0); // shifted
-image(image3, 400, 0); // shifted
+image(image2, 0, 0);
+image(image3, 0, 0);
