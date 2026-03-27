@@ -27,8 +27,8 @@ PImage image1 = loadImage( pathway1 );
 //PImage image3 = loadImage( pathway3 );
 //
 //image(image1, 0, 0);
-int imageWidth2 = 860;
-int imageHeight2 = 529;
+int imageWidth2 = 1920;
+int imageHeight2 = 1080;
 //image(image2, 0, 0);
 //image(image3, 0, 0);
 //
