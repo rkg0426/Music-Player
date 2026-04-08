@@ -7,9 +7,9 @@ int appWidth = displayWidth;
 int appHeight = displayHeight;
 //
 String upArrow = "..";
-String dependenciesFolder = "Dependencies/";
-String imagesFolder = "Images/";
-String imageName = "ZiClJf-1920w";
+String dependenciesFolder = "Dependencies";
+String imagesFolder = "Images";
+String imageName1 = "ZiClJf-1920w";
 String fileExtension = ".jpg";
 String open = "/";
 //
@@ -17,7 +17,7 @@ String open = "/";
 //Note, Cut Out, See Absolute Pathway:
 //See Relative Pathway: Dependencies\Images
 String imageDirectory = upArrow + open + upArrow + open + upArrow + open + dependenciesFolder + open + imagesFolder + open;
-String pathway1 = imageDirectory + imageName + fileExtension;
+String pathway1 = imageDirectory + imageName1 + fileExtension;
 //String pathway2 = imageDirectory + imageName2 + fileExtension;
 //String pathway3 = imageDirectory + imageName3 + fileExtension;
 //println(pathway);
