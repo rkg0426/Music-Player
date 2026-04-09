@@ -44,8 +44,11 @@ float imageDivHeight = appHeight*1.5/5; //1+1.5=2.5, half of the total height
 //Image: Aspect Ratio Algorithm
 float image2AspectRatio_GreatOne = ( imageWidth2 > imageHeight2 ) ? float(imageWidth2) / float(imageHeight2) : float(imageHeight2) / float(imageWidth2 ) ;
 float imageWidthAdjusted2 = imageDivWidth;
-if (  ) { 
+float imageHeightAdjusted1;
+if ( imageWidth2 >= imageDivWidth ) { 
+  imageHeightAdjusted1 = imageWidthAdjusted2 / image2AspectRatio_GreatOne;
 } else {
+  imageHeightAdjusted1 = imageWidthAdjusted2 * image2AspectRatio_GreatOne;
 }
 
 
@@ -55,7 +58,7 @@ if (  ) {
 println("Verify Image Aspect Ratio Greater than One:", image2AspectRatio_GreatOne>=1, "\tActual Number:", image2AspectRatio_GreatOne);
 
 println("Comparison of imageHeight2 and divHeight:", imageHeight2, imageDivHeight);
-float imageHeightAdjusted1 = ( imageWidth2 >= imageDivWidth ) ? imageWidthAdjusted2 / image2AspectRatio_GreatOne : imageWidthAdjusted2 * image2AspectRatio_GreatOne ;
+
 println("imageHeightAdjusted1", imageHeightAdjusted1);
 println("Question: is this too big?", "\t\thint ... reposition image() above rect(div)");
 // WHILE LOOP: decrease imageWidth to decrease the calculated imageHeight (% decrease within mutliplication assignment operator)
