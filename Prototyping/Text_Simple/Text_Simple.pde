@@ -23,6 +23,12 @@ float bottomLeftY = appHeight * 15/20;
 float bottomLeftWidth = appWidth * 0.5/3;
 float bottomLeftHeight = appHeight * 1/20;
 
+// Search Lyric Div (Top Middle)
+float topMiddleX = beginningButtonSpace;
+float topMiddleY = appHeight * 5/20;
+float topMiddleWidth = appWidth * 0.7/5;
+float topMiddleHeight = appHeight * 1/20;
+
 //
 //DIV: Image (Drawing the Rectangles)
 rect(quitX, quitY, quitWidth, quitHeight);
