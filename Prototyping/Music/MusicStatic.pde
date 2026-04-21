@@ -48,6 +48,15 @@ String songName1 = "Chase Atlantic - Swim";
 String soundEffect1 = "Wood_Door_Open_and_Close_Series";
 String fileExtension_mp3 = ".mp3";
 //
+//Caution: Mistakes Below
+String musicDirectory = upArrow + open + upArrow + open + upArrow + open + dependenciesFolder + open + musicFolder + open ; //Concatenation 
+String soundEffectsDirectory = upArrow + open + upArrow + open + upArrow + open + dependenciesFolder + open + soundEffectsFolder + open ; //Concatenation 
+String file = musicDirectory + songName1 + fileExtension_mp3; //TO BE Rewritten and deleted once file is LOADED
+playList[ currentSong ] = minim.loadFile( file ); //ERROR: Verify Spelling & Library installed, Sketch / Import Library
+file = soundEffectsDirectory + soundEffect1 + fileExtension_mp3; //Rewritting FILE
+soundEffects[currentSong] = minim.loadFile( file ); //ERROR: Verify Spelling & Library installed, Sketch / Import Library
+//
+playList[currentSong].play();
 
 
 
