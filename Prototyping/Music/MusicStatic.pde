@@ -34,6 +34,20 @@ int currentSong = numberOfSongs - numberOfSongs; //Zero, Math Property
 //Display
 size( 700, 500); //width ??height
 fullScreen();  //displayWidth //displayHeight
+int appWidth = width; //Best Practice
+int appHeight = height;
+//
+//Music Loading - STRUCTURED Review
+minim = new Minim(this); //Manditory
+String upArrow = "..";
+String open = "/";
+String musicFolder = "Music/"; //Developer Specific 
+String soundEffectsFolder = "SoundEffects"; //Developer Specific
+String dependenciesFolder = "Dependencies"; //Developer Specific
+String songName1 = "Chase Atlantic - Swim";
+String soundEffect1 = "Wood_Door_Open_and_Close_Series";
+String fileExtension_mp3 = ".mp3";
+//
 
 
 
