@@ -37,7 +37,7 @@ fullScreen();  //displayWidth //displayHeight
 int appWidth = width; //Best Practice
 int appHeight = height;
 //
-//Music Loading - STRUCTURED Review
+//Music Loading - STRUCTURED Review 
 minim = new Minim(this); //Manditory
 String upArrow = "..";
 String open = "/";
