@@ -8,7 +8,7 @@ import ddf.minim.ugens.*;
 //
 //Global Variables
 Minim minim;  //initates entire class
-int numberOfSongs = 3; // Best Practice
+int numberOfSongs = 1; // Best Practice
 int numberOfSoundEffect = 1;
 AudioPlayer[] playList = new AudioPlayer[ numberOfSongs ]; // FIXED: 'L' is now capitalized
 AudioPlayer[] soundEffects = new AudioPlayer [ numberOfSoundEffect ];
