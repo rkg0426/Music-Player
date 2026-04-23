@@ -10,7 +10,7 @@ import ddf.minim.ugens.*;
 Minim minim;  //initates entire class
 int numberOfSongs = 1; // Best Practice
 int numberOfSoundEffect = 1;
-AudioPlayer[] playList = new AudioPlayer[ numberOfSongs ]; // FIXED: 'L' is now capitalized
+AudioPlayer[] playList = new AudioPlayer[ numberOfSongs ]; 
 AudioPlayer[] soundEffects = new AudioPlayer [ numberOfSoundEffect ];
 int currentSong = numberOfSongs - numberOfSongs; //Zero, Math Property
 //
@@ -26,7 +26,7 @@ void setup() {
   String upArrow = "..";
   String open = "/";
   String musicFolder = "Music/"; //Developer Specific
-  String soundEffectsFolder = "Sound Effects"; // FIXED: Added the space you mentioned
+  String soundEffectsFolder = "Sound Effects"; // 
   String dependenciesFolder = "Dependencies"; //Developer Specific
   String songName1 = "Chase Atlantic - Swim";
   String soundEffect1 = "Wood_Door_Open_and_Close_Series";
