@@ -58,18 +58,18 @@ float progY = appHeight * 220 / paperHeight;
 float progW = appWidth * 175 / paperWidth;
 float progH = appHeight * 3 / paperHeight;
 
-// MODIFY BOX VARIABLES
+float bW = appWidth * 20 / paperWidth, bH = appHeight * 18 / paperHeight, bY = appHeight * 230 / paperHeight, bG = appWidth * 8 / paperWidth;
 float modifyX = imgX; 
-float modifyY = appHeight * 250 / paperHeight; 
-float modifyW = appWidth * 30 / paperWidth;
-float modifyH = appHeight * 20 / paperHeight;
+float modifyY = appHeight * 260 / paperHeight; 
+float modifyW = appWidth * 20 / paperWidth;
+float modifyH = appHeight * 10 / paperHeight;
 
 float speedX = appWidth * (paperWidth - 91)/2 / paperWidth;
 float speedY = appHeight * 320 / paperHeight;
 float speedW = appWidth * 91 / paperWidth;
 float speedH = appHeight * 10 / paperHeight;
 
-// --- THE DRAWING SECTION ---
+//
 rect(backX, backY, backW, backH);
 rect(searchX, searchY, searchW, searchH);
 rect(exitX, exitY, exitW, exitH);
@@ -81,6 +81,8 @@ rect(icon3X, icon3Y, icon3W, icon3H);
 rect(progX, progY, progW, progH);
 
 // 
+float startX = imgX + (progW - (5*bW + 4*bG))/2; rect(startX, bY, bW, bH); rect(startX+(bW+bG), bY, bW, bH); rect(startX+2*(bW+bG), bY, bW, bH); rect(startX+3*(bW+bG), bY, bW, bH); rect(startX+4*(bW+bG), bY, bW, bH);
+
 rect(modifyX, modifyY, modifyW, modifyH); 
 
 rect(speedX, speedY, speedW, speedH);
