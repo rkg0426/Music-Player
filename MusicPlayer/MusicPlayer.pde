@@ -9,7 +9,10 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
-//Global Variables
+/*Global Variables
+- Possible DIV-vars needed in draw(), etc.
+- MUST: Music Button-vars, possibliy associated DIV-vars
+*/
 //
 void setup() {
   // Display Setup
