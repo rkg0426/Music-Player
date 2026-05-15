@@ -53,13 +53,11 @@ void setup() {
   exitW = appWidth * 20 / paperWidth;
   exitH = appHeight * 13 / paperHeight;
   //
-  // 
   imgW = appWidth * 75 / paperWidth;
   imgX = appWidth * (paperWidth - 75)/2 / paperWidth;
   imgY = appHeight * 50 / paperHeight;
   imgH = appHeight * 101 / paperHeight;
   //
-  // 
   float layoutAnchorX = appWidth * (paperWidth - 175)/2 / paperWidth;
   //
   songtitleX = layoutAnchorX;
