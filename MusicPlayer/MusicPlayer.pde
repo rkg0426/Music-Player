@@ -149,6 +149,33 @@ void setup() {
   rect(startX+4*(bW+bG), bY, bW, bH);
   triangle(startX+4*(bW+bG) + bW*1/6, bY + bH*1/5, startX+4*(bW+bG) + bW*2/3, bY + bH*1/2, startX+4*(bW+bG) + bW*1/6, bY + bH*4/5);
   rect(startX+4*(bW+bG) + bW*3/4, bY + bH*1/5, bW*1/10, bH*3/5);
+  // Button 6: Back/Return
+  noFill();
+  stroke(0);
+  strokeWeight(2);
+  arc(backX + backW*0.6, backY + backH*0.5, backW*0.5, backH*0.6, -PI, HALF_PI);
+  fill(0);
+  triangle(backX + backW*0.35, backY + backH*0.2, backX + backW*0.2, backY + backH*0.4, backX + backW*0.45, backY + backH*0.5);
+  //Button 7: Shuffle  
+  noFill();
+  stroke(0);
+  strokeWeight(2);
+  bezier(icon2X, icon2Y + icon2H*0.8, icon2X + icon2W*0.4, icon2Y + icon2H*0.8, icon2X + icon2W*0.6, icon2Y + icon2H*0.2, icon2X + icon2W*0.8, icon2Y + icon2H*0.2);
+  bezier(icon2X, icon2Y + icon2H*0.2, icon2X + icon2W*0.4, icon2Y + icon2H*0.2, icon2X + icon2W*0.6, icon2Y + icon2H*0.8, icon2X + icon2W*0.8, icon2Y + icon2H*0.8);
+  fill(0);
+  triangle(icon2X + icon2W*0.8, icon2Y + icon2H*0.05, icon2X + icon2W*1.0, icon2Y + icon2H*0.2, icon2X + icon2W*0.8, icon2Y + icon2H*0.35);
+  triangle(icon2X + icon2W*0.8, icon2Y + icon2H*0.65, icon2X + icon2W*1.0, icon2Y + icon2H*0.8, icon2X + icon2W*0.8, icon2Y + icon2H*0.95);
+  // BUtton 8: Download  
+  noFill();
+  stroke(0);
+  strokeWeight(3);
+  beginShape();
+  vertex(icon3X + icon3W*0.1, icon3Y + icon3H*0.3);
+  vertex(icon3X + icon3W*0.4, icon3Y + icon3H*0.7);
+  vertex(icon3X + icon3W*0.9, icon3Y + icon3H*0.1);
+  endShape();
+  strokeWeight(2);
+  rect(icon3X + icon3W*0.05, icon3Y + icon3H*0.75, icon3W*0.9, icon3H*0.1);
   //
   //Images & Aspect Ratio Algoritrhm, including WHILE Loop
   float imageAspectRatio = float(imageWidthOriginal) / float(imageHeightOriginal);
@@ -161,6 +188,80 @@ void setup() {
   //
   image(image1, imgX + (imgW - imageWidthAdjusted)/2, imgY + (imgH - imageHeightAdjusted)/2, imageWidthAdjusted, imageHeightAdjusted);
   //
+  //Drawing Text - Formatting Text Functions & Ink Variables
+  // Colors and Ink
+  color darkpurpleInk = #585062; 
+  fill(darkpurpleInk); 
+  textAlign(CENTER, CENTER); 
+  float constantDecrease = 0.99;
+
+  // Strings, Text, Literal
+  String title = "Die for me"; 
+  String artist = "Chase Atlantic";
+  String searchLabel = "Search Lyric"; 
+  String modifyStar = "✦"; 
+  String modifyText = "Modify";
+
+  // Fonts
+  PFont mainFont = createFont("Century Schoolbook", 48);
+  PFont starFont = createFont("SansSerif", 48); // System font for the star
+
+  // 1. Draw Quit 
+  textFont(mainFont, exitH * 0.9);
+  text("X", exitX, exitY, exitW, exitH);
+
+  // 2. Draw Song Title
+  float fontSizeBottom = songtitleH * 0.9;
+  textFont(mainFont, fontSizeBottom);
+  while (textWidth(title) > songtitleW) {
+    fontSizeBottom *= constantDecrease;
+    textFont(mainFont, fontSizeBottom);
+  }
+  text(title, songtitleX, songtitleY, songtitleW, songtitleH);
+
+  // 3. Draw Artist
+  float fontSizeArtist = artistH * 0.9;
+  textFont(mainFont, fontSizeArtist);
+  while (textWidth(artist) > artistW) {
+    fontSizeArtist *= constantDecrease;
+    textFont(mainFont, fontSizeArtist);
+  }
+  text(artist, artistX, artistY, artistW, artistH);
+
+  // 4. Draw Modify Button 
+  float fontSizeMod = modifyH * 0.7;
+  // Check width with both parts
+  textFont(mainFont, fontSizeMod);
+  float totalW = textWidth(modifyStar + " " + modifyText);
+  while (totalW > modifyW) {
+    fontSizeMod *= constantDecrease;
+    textFont(mainFont, fontSizeMod);
+    totalW = textWidth(modifyStar + " " + modifyText);
+  }
+
+  // Draw the star in SansSerif
+  textFont(starFont, fontSizeMod);
+  text(modifyStar, modifyX + (modifyW * 0.25), modifyY + (modifyH/2));
+
+  // Draw "Modify" in Century Schoolbook
+  textFont(mainFont, fontSizeMod);
+  text(modifyText, modifyX + (modifyW * 0.6), modifyY + (modifyH/2));
+
+  // 5. Draw Search Lyric
+  float fontSizeSearch = searchH * 0.9;
+  textFont(mainFont, fontSizeSearch);
+  while (textWidth(searchLabel) > searchW) {
+    fontSizeSearch *= constantDecrease;
+    textFont(mainFont, fontSizeSearch);
+  }
+  text(searchLabel, searchX, searchY, searchW, searchH);
+  
+  // 6. Draw Download Text Label below the icon shape
+  fill(darkpurpleInk);
+  textAlign(CENTER, TOP);
+  textFont(mainFont, icon3H * 0.45);
+  text("Download", icon3X + icon3W/2, icon3Y + icon3H);
+  
 }//End Setup
 //
 void draw() {
