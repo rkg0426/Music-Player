@@ -56,13 +56,13 @@ void setup() {
   imgW = appWidth * 75 / paperWidth;
   imgX = appWidth * (paperWidth - 75)/2 / paperWidth;
   imgY = appHeight * 50 / paperHeight;
-  imgH = appHeight * 101 / paperHeight;
+  imgH = appHeight * 89 / paperHeight;
   //
   float layoutAnchorX = appWidth * (paperWidth - 175)/2 / paperWidth;
   //
   songtitleX = layoutAnchorX;
   songtitleY = appHeight * 180 / paperHeight;
-  songtitleW = appWidth * 145 / paperWidth;
+  songtitleW = appWidth * 80 / paperWidth;
   songtitleH = appHeight * 15 / paperHeight;
   //
   artistX = layoutAnchorX;
