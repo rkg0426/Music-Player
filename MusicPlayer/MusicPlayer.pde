@@ -18,8 +18,8 @@ float exitX, exitY, exitW, exitH;
 float imgX, imgY, imgW, imgH;
 float songtitleX, songtitleY, songtitleW, songtitleH;
 float artistX, artistY, artistW, artistH;
-float icon2X, icon2Y, icon2W, icon2H;
-float icon3X, icon3Y, icon3W, icon3H;
+float shuffleX, shuffleY, shuffleW, shuffleH;
+float downloadX, downloadY, downloadW, downloadH;
 float progX, progY, progW, progH;
 float modifyX, modifyY, modifyW, modifyH;
 float speedX, speedY, speedW, speedH;
@@ -70,15 +70,15 @@ void setup() {
   artistW = appWidth * 77 / paperWidth;
   artistH = appHeight * 9 / paperHeight;
   //
-  icon2X = appWidth * (paperWidth - 30) / paperWidth;
-  icon2Y = appHeight * 180 / paperHeight;
-  icon2W = appWidth * 11 / paperWidth;
-  icon2H = appHeight * 11 / paperHeight;
+  shuffleX = appWidth * (paperWidth - 30) / paperWidth;
+  shuffleY = appHeight * 180 / paperHeight;
+  shuffleW = appWidth * 11 / paperWidth;
+  shuffleH = appHeight * 11 / paperHeight;
   //
-  icon3X = appWidth * (paperWidth - 30) / paperWidth;
-  icon3Y = appHeight * 200 / paperHeight;
-  icon3W = appWidth * 11 / paperWidth;
-  icon3H = appHeight * 11 / paperHeight;
+  downloadX = appWidth * (paperWidth - 30) / paperWidth;
+  downloadY = appHeight * 200 / paperHeight;
+  downloadW = appWidth * 11 / paperWidth;
+  downloadH = appHeight * 11 / paperHeight;
   //
   progX = layoutAnchorX;
   progY = appHeight * 220 / paperHeight;
@@ -122,31 +122,41 @@ void setup() {
   rect(imgX, imgY, imgW, imgH); 
   rect(songtitleX, songtitleY, songtitleW, songtitleH);
   rect(artistX, artistY, artistW, artistH);
-  rect(icon2X, icon2Y, icon2W, icon2H);
-  rect(icon3X, icon3Y, icon3W, icon3H);
+  rect(shuffleX, shuffleY, shuffleW, shuffleH);
+  rect(downloadX, downloadY, downloadW, downloadH);
   rect(progX, progY, progW, progH);
   rect(modifyX, modifyY, modifyW, modifyH);
   rect(speedX, speedY, speedW, speedH);
   //
   //2D music Symbol Shapes, 2D shapes needed to draw
   // Button 1: Skip Back
+  fill(255);
   rect(startX, bY, bW, bH);
+  fill(0);
   rect(startX + bW*1/6, bY + bH*1/5, bW*1/10, bH*3/5);
   triangle(startX + bW*5/6, bY + bH*1/5, startX + bW*1/3, bY + bH*1/2, startX + bW*5/6, bY + bH*4/5);
   // Button 2: Rewind
+  fill(255);
   rect(startX+(bW+bG), bY, bW, bH);
+  fill(0);
   triangle(startX+(bW+bG) + bW*1/2, bY + bH*1/5, startX+(bW+bG) + bW*1/10, bY + bH*1/2, startX+(bW+bG) + bW*1/2, bY + bH*4/5);
   triangle(startX+(bW+bG) + bW*9/10, bY + bH*1/5, startX+(bW+bG) + bW*1/2, bY + bH*1/2, startX+(bW+bG) + bW*9/10, bY + bH*4/5);
   // Button 3: Pause
+  fill(255);
   rect(startX+2*(bW+bG), bY, bW, bH);
+  fill(0);
   rect(startX+2*(bW+bG) + bW*1/4, bY + bH*1/5, bW*1/6, bH*3/5);
   rect(startX+2*(bW+bG) + bW*7/12, bY + bH*1/5, bW*1/6, bH*3/5);
   // Button 4: Fast Forward
+  fill(255);
   rect(startX+3*(bW+bG), bY, bW, bH);
+  fill(0);
   triangle(startX+3*(bW+bG) + bW*1/10, bY + bH*1/5, startX+3*(bW+bG) + bW*1/2, bY + bH*1/2, startX+3*(bW+bG) + bW*1/10, bY + bH*4/5);
   triangle(startX+3*(bW+bG) + bW*1/2, bY + bH*1/5, startX+3*(bW+bG) + bW*9/10, bY + bH*1/2, startX+3*(bW+bG) + bW*1/2, bY + bH*4/5);
   // Button 5: Skip Forward
+  fill(255);
   rect(startX+4*(bW+bG), bY, bW, bH);
+  fill(0);
   triangle(startX+4*(bW+bG) + bW*1/6, bY + bH*1/5, startX+4*(bW+bG) + bW*2/3, bY + bH*1/2, startX+4*(bW+bG) + bW*1/6, bY + bH*4/5);
   rect(startX+4*(bW+bG) + bW*3/4, bY + bH*1/5, bW*1/10, bH*3/5);
   // Button 6: Back/Return
@@ -160,22 +170,23 @@ void setup() {
   noFill();
   stroke(0);
   strokeWeight(2);
-  bezier(icon2X, icon2Y + icon2H*0.8, icon2X + icon2W*0.4, icon2Y + icon2H*0.8, icon2X + icon2W*0.6, icon2Y + icon2H*0.2, icon2X + icon2W*0.8, icon2Y + icon2H*0.2);
-  bezier(icon2X, icon2Y + icon2H*0.2, icon2X + icon2W*0.4, icon2Y + icon2H*0.2, icon2X + icon2W*0.6, icon2Y + icon2H*0.8, icon2X + icon2W*0.8, icon2Y + icon2H*0.8);
+  bezier(shuffleX, shuffleY + shuffleH*0.8, shuffleX + shuffleW*0.4, shuffleY + shuffleH*0.8, shuffleX + shuffleW*0.6, shuffleY + shuffleH*0.2, shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.2);
+  bezier(shuffleX, shuffleY + shuffleH*0.2, shuffleX + shuffleW*0.4, shuffleY + shuffleH*0.2, shuffleX + shuffleW*0.6, shuffleY + shuffleH*0.8, shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.8);
   fill(0);
-  triangle(icon2X + icon2W*0.8, icon2Y + icon2H*0.05, icon2X + icon2W*1.0, icon2Y + icon2H*0.2, icon2X + icon2W*0.8, icon2Y + icon2H*0.35);
-  triangle(icon2X + icon2W*0.8, icon2Y + icon2H*0.65, icon2X + icon2W*1.0, icon2Y + icon2H*0.8, icon2X + icon2W*0.8, icon2Y + icon2H*0.95);
-  // BUtton 8: Download  
+  triangle(shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.05, shuffleX + shuffleW*1.0, shuffleY + shuffleH*0.2, shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.35);
+  triangle(shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.65, shuffleX + shuffleW*1.0, shuffleY + shuffleH*0.8, shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.95);
+  // Button 8: Download  
   noFill();
   stroke(0);
   strokeWeight(3);
   beginShape();
-  vertex(icon3X + icon3W*0.1, icon3Y + icon3H*0.3);
-  vertex(icon3X + icon3W*0.4, icon3Y + icon3H*0.7);
-  vertex(icon3X + icon3W*0.9, icon3Y + icon3H*0.1);
+  vertex(downloadX + downloadW*0.1, downloadY + downloadH*0.3);
+  vertex(downloadX + downloadW*0.4, downloadY + downloadH*0.7);
+  vertex(downloadX + downloadW*0.9, downloadY + downloadH*0.1);
   endShape();
   strokeWeight(2);
-  rect(icon3X + icon3W*0.05, icon3Y + icon3H*0.75, icon3W*0.9, icon3H*0.1);
+  fill(0);
+  rect(downloadX + downloadW*0.05, downloadY + downloadH*0.75, downloadW*0.9, downloadH*0.1);
   //
   //Images & Aspect Ratio Algoritrhm, including WHILE Loop
   float imageAspectRatio = float(imageWidthOriginal) / float(imageHeightOriginal);
@@ -256,11 +267,11 @@ void setup() {
   }
   text(searchLabel, searchX, searchY, searchW, searchH);
   
-  // 6. Draw Download Text Label below the icon shape
+  // 6. Draw Download under download shape
   fill(darkpurpleInk);
   textAlign(CENTER, TOP);
-  textFont(mainFont, icon3H * 0.45);
-  text("Download", icon3X + icon3W/2, icon3Y + icon3H);
+  textFont(mainFont, downloadH * 0.45);
+  text("Download", downloadX + downloadW/2, downloadY + downloadH);
   
 }//End Setup
 //
