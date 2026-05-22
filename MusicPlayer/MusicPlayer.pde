@@ -116,77 +116,36 @@ void setup() {
   int imageHeightOriginal = 1095;
   //
   //DIVs
-  rect(backX, backY, backW, backH);
   rect(searchX, searchY, searchW, searchH);
   rect(exitX, exitY, exitW, exitH);
   rect(imgX, imgY, imgW, imgH); 
   rect(songtitleX, songtitleY, songtitleW, songtitleH);
   rect(artistX, artistY, artistW, artistH);
-  rect(shuffleX, shuffleY, shuffleW, shuffleH);
-  rect(downloadX, downloadY, downloadW, downloadH);
   rect(progX, progY, progW, progH);
   rect(modifyX, modifyY, modifyW, modifyH);
   rect(speedX, speedY, speedW, speedH);
   //
   //2D music Symbol Shapes, 2D shapes needed to draw
   // Button 1: Skip Back
-  fill(255);
   rect(startX, bY, bW, bH);
-  fill(0);
   rect(startX + bW*1/6, bY + bH*1/5, bW*1/10, bH*3/5);
   triangle(startX + bW*5/6, bY + bH*1/5, startX + bW*1/3, bY + bH*1/2, startX + bW*5/6, bY + bH*4/5);
   // Button 2: Rewind
-  fill(255);
   rect(startX+(bW+bG), bY, bW, bH);
-  fill(0);
   triangle(startX+(bW+bG) + bW*1/2, bY + bH*1/5, startX+(bW+bG) + bW*1/10, bY + bH*1/2, startX+(bW+bG) + bW*1/2, bY + bH*4/5);
   triangle(startX+(bW+bG) + bW*9/10, bY + bH*1/5, startX+(bW+bG) + bW*1/2, bY + bH*1/2, startX+(bW+bG) + bW*9/10, bY + bH*4/5);
   // Button 3: Pause
-  fill(255);
   rect(startX+2*(bW+bG), bY, bW, bH);
-  fill(0);
   rect(startX+2*(bW+bG) + bW*1/4, bY + bH*1/5, bW*1/6, bH*3/5);
   rect(startX+2*(bW+bG) + bW*7/12, bY + bH*1/5, bW*1/6, bH*3/5);
   // Button 4: Fast Forward
-  fill(255);
   rect(startX+3*(bW+bG), bY, bW, bH);
-  fill(0);
   triangle(startX+3*(bW+bG) + bW*1/10, bY + bH*1/5, startX+3*(bW+bG) + bW*1/2, bY + bH*1/2, startX+3*(bW+bG) + bW*1/10, bY + bH*4/5);
   triangle(startX+3*(bW+bG) + bW*1/2, bY + bH*1/5, startX+3*(bW+bG) + bW*9/10, bY + bH*1/2, startX+3*(bW+bG) + bW*1/2, bY + bH*4/5);
   // Button 5: Skip Forward
-  fill(255);
   rect(startX+4*(bW+bG), bY, bW, bH);
-  fill(0);
   triangle(startX+4*(bW+bG) + bW*1/6, bY + bH*1/5, startX+4*(bW+bG) + bW*2/3, bY + bH*1/2, startX+4*(bW+bG) + bW*1/6, bY + bH*4/5);
   rect(startX+4*(bW+bG) + bW*3/4, bY + bH*1/5, bW*1/10, bH*3/5);
-  // Button 6: Back/Return
-  noFill();
-  stroke(0);
-  strokeWeight(2);
-  arc(backX + backW*0.6, backY + backH*0.5, backW*0.5, backH*0.6, -PI, HALF_PI);
-  fill(0);
-  triangle(backX + backW*0.35, backY + backH*0.2, backX + backW*0.2, backY + backH*0.4, backX + backW*0.45, backY + backH*0.5);
-  //Button 7: Shuffle  
-  noFill();
-  stroke(0);
-  strokeWeight(2);
-  bezier(shuffleX, shuffleY + shuffleH*0.8, shuffleX + shuffleW*0.4, shuffleY + shuffleH*0.8, shuffleX + shuffleW*0.6, shuffleY + shuffleH*0.2, shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.2);
-  bezier(shuffleX, shuffleY + shuffleH*0.2, shuffleX + shuffleW*0.4, shuffleY + shuffleH*0.2, shuffleX + shuffleW*0.6, shuffleY + shuffleH*0.8, shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.8);
-  fill(0);
-  triangle(shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.05, shuffleX + shuffleW*1.0, shuffleY + shuffleH*0.2, shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.35);
-  triangle(shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.65, shuffleX + shuffleW*1.0, shuffleY + shuffleH*0.8, shuffleX + shuffleW*0.8, shuffleY + shuffleH*0.95);
-  // Button 8: Download  
-  noFill();
-  stroke(0);
-  strokeWeight(3);
-  beginShape();
-  vertex(downloadX + downloadW*0.1, downloadY + downloadH*0.3);
-  vertex(downloadX + downloadW*0.4, downloadY + downloadH*0.7);
-  vertex(downloadX + downloadW*0.9, downloadY + downloadH*0.1);
-  endShape();
-  strokeWeight(2);
-  fill(0);
-  rect(downloadX + downloadW*0.05, downloadY + downloadH*0.75, downloadW*0.9, downloadH*0.1);
   //
   //Images & Aspect Ratio Algoritrhm, including WHILE Loop
   float imageAspectRatio = ( imageWidthOriginal > imageHeightOriginal ) ? float(imageWidthOriginal) / float(imageHeightOriginal) : float(imageHeightOriginal) / float(imageWidthOriginal) ;
@@ -267,12 +226,6 @@ void setup() {
     textFont(mainFont, fontSizeSearch);
   }
   text(searchLabel, searchX, searchY, searchW, searchH);
-  
-  // 6. Draw Download under download shape
-  fill(darkpurpleInk);
-  textAlign(CENTER, TOP);
-  textFont(mainFont, downloadH * 0.45);
-  text("Download", downloadX + downloadW/2, downloadY + downloadH);
   
 }//End Setup
 //
