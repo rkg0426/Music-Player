@@ -189,13 +189,14 @@ void setup() {
   rect(downloadX + downloadW*0.05, downloadY + downloadH*0.75, downloadW*0.9, downloadH*0.1);
   //
   //Images & Aspect Ratio Algoritrhm, including WHILE Loop
-  float imageAspectRatio = float(imageWidthOriginal) / float(imageHeightOriginal);
+  float imageAspectRatio = ( imageWidthOriginal > imageHeightOriginal ) ? float(imageWidthOriginal) / float(imageHeightOriginal) : float(imageHeightOriginal) / float(imageWidthOriginal) ;
   imageWidthAdjusted = imgW;
-  imageHeightAdjusted = imageWidthAdjusted / imageAspectRatio;
-  if (imageHeightAdjusted > imgH) {
-    imageHeightAdjusted = imgH;
-    imageWidthAdjusted = imageHeightAdjusted * imageAspectRatio;
-  }
+  imageHeightAdjusted = ( imageWidthOriginal >= imgW ) ? imageWidthAdjusted / imageAspectRatio : imageWidthAdjusted * imageAspectRatio ;
+  
+  while ( imageHeightAdjusted > imgH ) {
+    imageWidthAdjusted *= 0.99;
+    imageHeightAdjusted = imageWidthAdjusted / imageAspectRatio ; 
+  }//End WHILE
   //
   image(image1, imgX + (imgW - imageWidthAdjusted)/2, imgY + (imgH - imageHeightAdjusted)/2, imageWidthAdjusted, imageHeightAdjusted);
   //
