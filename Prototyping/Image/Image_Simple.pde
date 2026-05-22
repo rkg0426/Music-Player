@@ -43,34 +43,20 @@ float imageDivHeight = appHeight*1.5/5; //1+1.5=2.5, half of the total height
 //
 //Image: Aspect Ratio Algorithm
 float image2AspectRatio_GreatOne = ( imageWidth2 > imageHeight2 ) ? float(imageWidth2) / float(imageHeight2) : float(imageHeight2) / float(imageWidth2 ) ;
-float imageWidthAdjusted2 = imageDivWidth;
-float imageHeightAdjusted1;
-if ( imageWidth2 >= imageDivWidth ) { 
-  imageHeightAdjusted1 = imageWidthAdjusted2 / image2AspectRatio_GreatOne;
- while ( imageHeightAdjusted1 > imageDivHeight ) {
-  imageWidthAdjusted2 *= 0.99;
-  imageHeightAdjusted1 = imageWidthAdjusted2 / image2AspectRatio_GreatOne ; //CHANGE THIS
- }//End WHILE
-} else {
-  imageHeightAdjusted1 = imageWidthAdjusted2 * image2AspectRatio_GreatOne;
- while ( imageHeightAdjusted1 > imageDivHeight ) {
-  imageWidthAdjusted2 *= 0.99;
-  imageHeightAdjusted1 = imageWidthAdjusted2 * image2AspectRatio_GreatOne ; //CHANGE THIS
- }//End WHILE
-}
-
-
-//println( float(imageWidth2)/ float(imageHeight2) );
-//Ternary Operator for As[pect Ratio: Q: greatOne v lessOne
-
 println("Verify Image Aspect Ratio Greater than One:", image2AspectRatio_GreatOne>=1, "\tActual Number:", image2AspectRatio_GreatOne);
-
+float imageWidthAdjusted2 = imageDivWidth;
 println("Comparison of imageHeight2 and divHeight:", imageHeight2, imageDivHeight);
 
+// Ternary Operator 
+float imageHeightAdjusted1 = ( imageWidth2 >= imageDivWidth ) ? imageWidthAdjusted2 / image2AspectRatio_GreatOne : imageWidthAdjusted2 * image2AspectRatio_GreatOne ;
 println("imageHeightAdjusted1", imageHeightAdjusted1);
 println("Question: is this too big?", "\t\thint ... reposition image() above rect(div)");
-// WHILE LOOP: decrease imageWidth to decrease the calculated imageHeight (% decrease within mutliplication assignment operator)
 
+// A single WHILE loop structured
+while ( imageHeightAdjusted1 > imageDivHeight ) {
+  imageWidthAdjusted2 *= 0.99;
+  imageHeightAdjusted1 = imageWidthAdjusted2 / image2AspectRatio_GreatOne ; //CHANGE THIS
+}//End WHILE
 
 //
 //CAUTION: might need to reposition rect(div) with image()
