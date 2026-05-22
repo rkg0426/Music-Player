@@ -103,12 +103,11 @@ void setup() {
   //
   //2D Music Symbol Variables
   //
-  // Button 1: Skip Back Master Bounding Box
+  // Button 1: Skip Back 
   float skipBackDivX = startX;
   float skipBackDivY = bY;
   float skipBackDivWidth = bW;
   float skipBackDivHeight = bH;
-  // Button 1 Inner Elements
   float skipBackBarX = skipBackDivX + skipBackDivWidth*1/6;
   float skipBackBarY = skipBackDivY + skipBackDivHeight*1/5;
   float skipBackBarWidth = skipBackDivWidth*1/10;
@@ -120,12 +119,11 @@ void setup() {
   float skipBackTriX5 = skipBackDivX + skipBackDivWidth*5/6;
   float skipBackTriY6 = skipBackDivY + skipBackDivHeight*4/5;
   //
-  // Button 2: Rewind Master Bounding Box
+  // Button 2: Rewind 
   float rewindDivX = startX + 1*(bW+bG);
   float rewindDivY = bY;
   float rewindDivWidth = bW;
   float rewindDivHeight = bH;
-  // Button 2 Inner Elements
   float rewindTri1X1 = rewindDivX + rewindDivWidth*1/2;
   float rewindTri1Y2 = rewindDivY + rewindDivHeight*1/5;
   float rewindTri1X3 = rewindDivX + rewindDivWidth*1/10;
@@ -139,12 +137,11 @@ void setup() {
   float rewindTri2X5 = rewindDivX + rewindDivWidth*9/10;
   float rewindTri2Y6 = rewindDivY + rewindDivHeight*4/5;
   //
-  // Button 3: Pause Master Bounding Box
+  // Button 3: Pause 
   float pauseDivX = startX + 2*(bW+bG);
   float pauseDivY = bY;
   float pauseDivWidth = bW;
   float pauseDivHeight = bH;
-  // Button 3 Inner Elements
   float pauseBar1X = pauseDivX + pauseDivWidth*1/4;
   float pauseBar1Y = pauseDivY + pauseDivHeight*1/5;
   float pauseBar1Width = pauseDivWidth*1/6;
@@ -154,12 +151,11 @@ void setup() {
   float pauseBar2Width = pauseDivWidth*1/6;
   float pauseBar2Height = pauseDivHeight*3/5;
   //
-  // Button 4: Fast Forward Master Bounding Box
+  // Button 4: Fast Forward 
   float ffDivX = startX + 3*(bW+bG);
   float ffDivY = bY;
   float ffDivWidth = bW;
   float ffDivHeight = bH;
-  // Button 4 Inner Elements
   float ffTri1X1 = ffDivX + ffDivWidth*1/10;
   float ffTri1Y2 = ffDivY + ffDivHeight*1/5;
   float ffTri1X3 = ffDivX + ffDivWidth*1/2;
@@ -173,12 +169,11 @@ void setup() {
   float ffTri2X5 = ffDivX + ffDivWidth*1/2;
   float ffTri2Y6 = ffDivY + ffDivHeight*4/5;
   //
-  // Button 5: Skip Forward Master Bounding Box
+  // Button 5: Skip Forward 
   float skipForwardDivX = startX + 4*(bW+bG);
   float skipForwardDivY = bY;
   float skipForwardDivWidth = bW;
   float skipForwardDivHeight = bH;
-  // Button 5 Inner Elements
   float skipForwardTriX1 = skipForwardDivX + skipForwardDivWidth*1/6;
   float skipForwardTriY2 = skipForwardDivY + skipForwardDivHeight*1/5;
   float skipForwardTriX3 = skipForwardDivX + skipForwardDivWidth*2/3;
