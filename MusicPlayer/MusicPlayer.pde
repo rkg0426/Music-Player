@@ -236,7 +236,7 @@ void setup() {
   float imageAspectRatio = ( imageWidthOriginal > imageHeightOriginal ) ? float(imageWidthOriginal) / float(imageHeightOriginal) : float(imageHeightOriginal) / float(imageWidthOriginal) ;
   imageWidthAdjusted = imgDivWidth;
   imageHeightAdjusted = ( imageWidthOriginal >= imgDivWidth ) ? imageWidthAdjusted / imageAspectRatio : imageWidthAdjusted * imageAspectRatio ;
-      
+        
   while ( imageHeightAdjusted > imgDivHeight ) {
     imageWidthAdjusted *= 0.99;
     imageHeightAdjusted = imageWidthAdjusted / imageAspectRatio ; 
@@ -255,12 +255,10 @@ void setup() {
   String title = "Die for me"; 
   String artist = "Chase Atlantic";
   String searchLabel = "Search Lyric"; 
-  String modifyStar = "✦"; 
   String modifyText = "Modify";
 
   // Fonts
   PFont mainFont = createFont("Century Schoolbook", 48);
-  PFont starFont = createFont("SansSerif", 48); // System font for the star
 
   // 1. Draw Quit 
   textFont(mainFont, exitDivHeight * 0.9);
@@ -286,22 +284,16 @@ void setup() {
 
   // 4. Draw Modify Button 
   float fontSizeMod = modifyDivHeight * 0.7;
-  // Check width with both parts
   textFont(mainFont, fontSizeMod);
-  float totalW = textWidth(modifyStar + " " + modifyText);
-  while (totalW > modifyDivWidth) {
+  
+  // Dynamic scale reduction check for "Modify" string width alone
+  while (textWidth(modifyText) > modifyDivWidth) {
     fontSizeMod *= constantDecrease;
     textFont(mainFont, fontSizeMod);
-    totalW = textWidth(modifyStar + " " + modifyText);
   }
 
-  // Draw the star in SansSerif
-  textFont(starFont, fontSizeMod);
-  text(modifyStar, modifyDivX + (modifyDivWidth * 0.25), modifyDivY + (modifyDivHeight/2));
-
-  // Draw "Modify" in Century Schoolbook
-  textFont(mainFont, fontSizeMod);
-  text(modifyText, modifyDivX + (modifyDivWidth * 0.6), modifyDivY + (modifyDivHeight/2));
+  // Draw "Modify" centered smoothly within its designated block boundary
+  text(modifyText, modifyDivX, modifyDivY, modifyDivWidth, modifyDivHeight);
 
   // 5. Draw Search Lyric
   float fontSizeSearch = searchDivHeight * 0.9;
