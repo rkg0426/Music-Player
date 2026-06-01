@@ -172,7 +172,7 @@ textFont(font, quitHeight*0.8);
 fill(darkPurple);
 text("X", quitX, quitY, quitWidth, quitHeight);
 fill(resetInk);
-playList[currentSong].play();
+//playList[currentSong].play();
 }
 
 void draw() {
