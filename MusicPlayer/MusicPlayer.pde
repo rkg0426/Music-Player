@@ -1,6 +1,6 @@
 /* Music App, Final Project */
 //
-//Minim Library
+//Minim Library - Do not copy, only add through File / Sketch
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -8,313 +8,231 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
-/* Global Variables
- - Possible DIV-vars needed in draw(), etc.
- - MUST: Music Button-vars, possibly associated DIV-vars
- */
-float backDivX, backDivY, backDivWidth, backDivHeight;
-float searchDivX, searchDivY, searchDivWidth, searchDivHeight;
-float exitDivX, exitDivY, exitDivWidth, exitDivHeight;
-float imgDivX, imgDivY, imgDivWidth, imgDivHeight;
-float songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight;
-float artistDivX, artistDivY, artistDivWidth, artistDivHeight;
-float shuffleDivX, shuffleDivY, shuffleDivWidth, shuffleDivHeight;
-float downloadDivX, downloadDivY, downloadDivWidth, downloadDivHeight;
-float progDivX, progDivY, progDivWidth, progDivHeight;
-float modifyDivX, modifyDivY, modifyDivWidth, modifyDivHeight;
-float speedDivX, speedDivY, speedDivWidth, speedDivHeight;
-float bW, bH, bY, bG, startX;
-//
-PImage image1;
-float imageWidthAdjusted, imageHeightAdjusted;
-//
+/* Global Variables */
+PImage image1; 
+
 void setup() {
+
   //Display
   println(displayWidth, displayHeight);
   fullScreen();
+
   int appWidth = displayWidth;
   int appHeight = displayHeight;
-  //
-  //DIVs Population using unitless ratios (i.e. millimeters to pixels)
+
+  // DIVs Population using unitless ratios
   int paperWidth = 216;
   int paperHeight = 279;
-  //
-  backDivX = appWidth * 10 / paperWidth;
-  backDivY = appHeight * 3 / paperHeight;
-  backDivWidth = appWidth * 20 / paperWidth;
-  backDivHeight = appHeight * 13 / paperHeight;
-  //
-  searchDivX = appWidth * 71 / paperWidth;
-  searchDivY = appHeight * 15 / paperHeight;
-  searchDivWidth = appWidth * 74 / paperWidth;
-  searchDivHeight = appHeight * 15 / paperHeight;
-  //
-  exitDivX = appWidth * 193 / paperWidth;
-  exitDivY = appHeight * 3 / paperHeight;
-  exitDivWidth = appWidth * 20 / paperWidth;
-  exitDivHeight = appHeight * 13 / paperHeight;
-  //
-  imgDivX = appWidth * 70 / paperWidth;
-  imgDivY = appHeight * 50 / paperHeight;
-  imgDivWidth = appWidth * 75 / paperWidth;
-  imgDivHeight = appHeight * 89 / paperHeight;
-  //
-  songTitleDivX = appWidth * 20 / paperWidth;
-  songTitleDivY = appHeight * 180 / paperHeight;
-  songTitleDivWidth = appWidth * 80 / paperWidth;
-  songTitleDivHeight = appHeight * 15 / paperHeight;
-  //
-  artistDivX = appWidth * 20 / paperWidth;
-  artistDivY = appHeight * 200 / paperHeight;
-  artistDivWidth = appWidth * 77 / paperWidth;
-  artistDivHeight = appHeight * 9 / paperHeight;
-  //
-  shuffleDivX = appWidth * 186 / paperWidth;
-  shuffleDivY = appHeight * 180 / paperHeight;
-  shuffleDivWidth = appWidth * 11 / paperWidth;
-  shuffleDivHeight = appHeight * 11 / paperHeight;
-  //
-  downloadDivX = appWidth * 186 / paperWidth;
-  downloadDivY = appHeight * 200 / paperHeight;
-  downloadDivWidth = appWidth * 11 / paperWidth;
-  downloadDivHeight = appHeight * 11 / paperHeight;
-  //
-  progDivX = appWidth * 20 / paperWidth;
-  progDivY = appHeight * 220 / paperHeight;
-  progDivWidth = appWidth * 175 / paperWidth;
-  progDivHeight = appHeight * 3 / paperHeight;
-  //
-  bW = appWidth * 20 / paperWidth; 
-  bH = appHeight * 18 / paperHeight; 
-  bY = appHeight * 230 / paperHeight; 
-  bG = appWidth * 8 / paperWidth;
-  //
-  modifyDivX = appWidth * 20 / paperWidth;
-  modifyDivY = appHeight * 260 / paperHeight;
-  modifyDivWidth = appWidth * 20 / paperWidth;
-  modifyDivHeight = appHeight * 10 / paperHeight;
-  //
-  speedDivX = appWidth * 62 / paperWidth;
-  speedDivY = appHeight * 320 / paperHeight;
-  speedDivWidth = appWidth * 91 / paperWidth;
-  speedDivHeight = appHeight * 10 / paperHeight;
-  //
-  startX = songTitleDivX + (progDivWidth - (5*bW + 4*bG))/2;
-  //
-  //2D Music Symbol Variables
-  //
-  // Button 1: Skip Back 
-  float skipBackDivX = startX;
-  float skipBackDivY = bY;
-  float skipBackDivWidth = bW;
-  float skipBackDivHeight = bH;
-  float skipBackBarX = skipBackDivX + skipBackDivWidth*1/6;
-  float skipBackBarY = skipBackDivY + skipBackDivHeight*1/5;
-  float skipBackBarWidth = skipBackDivWidth*1/10;
-  float skipBackBarHeight = skipBackDivHeight*3/5;
-  float skipBackTriX1 = skipBackDivX + skipBackDivWidth*5/6;
-  float skipBackTriY2 = skipBackDivY + skipBackDivHeight*1/5;
-  float skipBackTriX3 = skipBackDivX + skipBackDivWidth*1/3;
-  float skipBackTriY4 = skipBackDivY + skipBackDivHeight*1/2;
-  float skipBackTriX5 = skipBackDivX + skipBackDivWidth*5/6;
-  float skipBackTriY6 = skipBackDivY + skipBackDivHeight*4/5;
-  //
-  // Button 2: Rewind 
-  float rewindDivX = startX + 1*(bW+bG);
-  float rewindDivY = bY;
-  float rewindDivWidth = bW;
-  float rewindDivHeight = bH;
-  float rewindTri1X1 = rewindDivX + rewindDivWidth*1/2;
-  float rewindTri1Y2 = rewindDivY + rewindDivHeight*1/5;
-  float rewindTri1X3 = rewindDivX + rewindDivWidth*1/10;
-  float rewindTri1Y4 = rewindDivY + rewindDivHeight*1/2;
-  float rewindTri1X5 = rewindDivX + rewindDivWidth*1/2;
-  float rewindTri1Y6 = rewindDivY + rewindDivHeight*4/5;
-  float rewindTri2X1 = rewindDivX + rewindDivWidth*9/10;
-  float rewindTri2Y2 = rewindDivY + rewindDivHeight*1/5;
-  float rewindTri2X3 = rewindDivX + rewindDivWidth*1/2;
-  float rewindTri2Y4 = rewindDivY + rewindDivHeight*1/2;
-  float rewindTri2X5 = rewindDivX + rewindDivWidth*9/10;
-  float rewindTri2Y6 = rewindDivY + rewindDivHeight*4/5;
-  //
-  // Button 3: Pause 
-  float pauseDivX = startX + 2*(bW+bG);
-  float pauseDivY = bY;
-  float pauseDivWidth = bW;
-  float pauseDivHeight = bH;
-  float pauseBar1X = pauseDivX + pauseDivWidth*1/4;
-  float pauseBar1Y = pauseDivY + pauseDivHeight*1/5;
-  float pauseBar1Width = pauseDivWidth*1/6;
-  float pauseBar1Height = pauseDivHeight*3/5;
-  float pauseBar2X = pauseDivX + pauseDivWidth*7/12;
-  float pauseBar2Y = pauseDivY + pauseDivHeight*1/5;
-  float pauseBar2Width = pauseDivWidth*1/6;
-  float pauseBar2Height = pauseDivHeight*3/5;
-  //
-  // Button 4: Fast Forward 
-  float ffDivX = startX + 3*(bW+bG);
-  float ffDivY = bY;
-  float ffDivWidth = bW;
-  float ffDivHeight = bH;
-  float ffTri1X1 = ffDivX + ffDivWidth*1/10;
-  float ffTri1Y2 = ffDivY + ffDivHeight*1/5;
-  float ffTri1X3 = ffDivX + ffDivWidth*1/2;
-  float ffTri1Y4 = ffDivY + ffDivHeight*1/2;
-  float ffTri1X5 = ffDivX + ffDivWidth*1/10;
-  float ffTri1Y6 = ffDivY + ffDivHeight*4/5;
-  float ffTri2X1 = ffDivX + ffDivWidth*1/2;
-  float ffTri2Y2 = ffDivY + ffDivHeight*1/5;
-  float ffTri2X3 = ffDivX + ffDivWidth*9/10;
-  float ffTri2Y4 = ffDivY + ffDivHeight*1/2;
-  float ffTri2X5 = ffDivX + ffDivWidth*1/2;
-  float ffTri2Y6 = ffDivY + ffDivHeight*4/5;
-  //
-  // Button 5: Skip Forward 
-  float skipForwardDivX = startX + 4*(bW+bG);
-  float skipForwardDivY = bY;
-  float skipForwardDivWidth = bW;
-  float skipForwardDivHeight = bH;
-  float skipForwardTriX1 = skipForwardDivX + skipForwardDivWidth*1/6;
-  float skipForwardTriY2 = skipForwardDivY + skipForwardDivHeight*1/5;
-  float skipForwardTriX3 = skipForwardDivX + skipForwardDivWidth*2/3;
-  float skipForwardTriY4 = skipForwardDivY + skipForwardDivHeight*1/2;
-  float skipForwardTriX5 = skipForwardDivX + skipForwardDivWidth*1/6;
-  float skipForwardTriY6 = skipForwardDivY + skipForwardDivHeight*4/5;
-  float skipForwardBarX = skipForwardDivX + skipForwardDivWidth*3/4;
-  float skipForwardBarY = skipForwardDivY + skipForwardDivHeight*1/5;
-  float skipForwardBarWidth = skipForwardDivWidth*1/10;
-  float skipForwardBarHeight = skipForwardDivHeight*3/5;
-  //
-  //Directory or Pathway to Images
+
+  // --- BACKGROUND DIV ---
+  float backDivX = appWidth * 10 / paperWidth;
+  float backDivY = appHeight * 3 / paperHeight;
+  float backDivWidth = appWidth * 20 / paperWidth;
+  float backDivHeight = appHeight * 13 / paperHeight;
+
+  // --- SEARCH DIV ---
+  float searchDivX = appWidth * 71 / paperWidth;
+  float searchDivY = appHeight * 15 / paperHeight;
+  float searchDivWidth = appWidth * 74 / paperWidth;
+  float searchDivHeight = appHeight * 15 / paperHeight;
+
+  // --- EXIT DIV ---
+  float exitDivX = appWidth * 193 / paperWidth;
+  float exitDivY = appHeight * 3 / paperHeight;
+  float exitDivWidth = appWidth * 20 / paperWidth;
+  float exitDivHeight = appHeight * 13 / paperHeight;
+
+  // --- IMAGE DIV ---
+  float imageDivX = appWidth * 20 / paperWidth;
+  float imageDivY = appHeight * 50 / paperHeight;
+  float imageDivWidth = appWidth * 175 / paperWidth;
+  float imageDivHeight = appHeight * 101 / paperHeight;
+
+  // --- SONG TITLE DIV ---
+  float songTitleDivX = appWidth * 20 / paperWidth;
+  float songTitleDivY = appHeight * 180 / paperHeight;
+  float songTitleDivWidth = appWidth * 145 / paperWidth;
+  float songTitleDivHeight = appHeight * 15 / paperHeight;
+
+  // --- ARTIST DIV ---
+  float artistDivX = appWidth * 20 / paperWidth;
+  float artistDivY = appHeight * 200 / paperHeight;
+  float artistDivWidth = appWidth * 77 / paperWidth;
+  float artistDivHeight = appHeight * 9 / paperHeight;
+
+  // --- PROGRESS BAR DIV ---
+  float progressBarDivX = appWidth * 20 / paperWidth;
+  float progressBarDivY = appHeight * 220 / paperHeight;
+  float progressBarDivWidth = appWidth * 175 / paperWidth;
+  float progressBarDivHeight = appHeight * 3 / paperHeight;
+
+  // --- MODIFY DIV ---
+  float modifyDivX = appWidth * 20 / paperWidth;
+  float modifyDivY = appHeight * 260 / paperHeight;
+  float modifyDivWidth = appWidth * 20 / paperWidth;
+  float modifyDivHeight = appHeight * 10 / paperHeight;
+
+  // --- SPEED DIV ---
+  float speedDivX = appWidth * 62 / paperWidth;
+  float speedDivY = appHeight * 320 / paperHeight;
+  float speedDivWidth = appWidth * 91 / paperWidth;
+  float speedDivHeight = appHeight * 10 / paperHeight;
+
+  // 2D Music Symbol Variables
+  float buttonDivWidth = appWidth * 3.0/17.5;
+  float buttonDivHeight = appHeight * 3.0/35.0;
+  float buttonDivY = appHeight * 28.5/35.0;
+
+  // Button X Positions
+  float skipBackDivX = appWidth * 0.4/17.5;
+  float rewindDivX = appWidth * 3.8/17.5;
+  float pauseDivX = appWidth * 7.25/17.5;
+  float fastForwardDivX = appWidth * 10.7/17.5;
+  float skipForwardDivX = appWidth * 14.1/17.5;
+
+  // Skip Back Symbol DIVs
+  float skipBackBarDivX = skipBackDivX + buttonDivWidth * 1.0/6.0;
+  float skipBackBarDivY = buttonDivY + buttonDivHeight * 1.0/5.0;
+  float skipBackBarDivWidth = buttonDivWidth * 1.0/10.0;
+  float skipBackBarDivHeight = buttonDivHeight * 3.0/5.0;
+
+  float skipBackTriangleDivX1 = skipBackDivX + buttonDivWidth * 5.0/6.0;
+  float skipBackTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  float skipBackTriangleDivX2 = skipBackDivX + buttonDivWidth * 1.0/3.0;
+  float skipBackTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  float skipBackTriangleDivX3 = skipBackDivX + buttonDivWidth * 5.0/6.0;
+  float skipBackTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
+
+  // Rewind Symbol DIVs
+  float rewindTriangleDivX1 = rewindDivX + buttonDivWidth * 1.0/2.0;
+  float rewindTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  float rewindTriangleDivX2 = rewindDivX + buttonDivWidth * 1.0/10.0;
+  float rewindTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  float rewindTriangleDivX3 = rewindDivX + buttonDivWidth * 1.0/2.0;
+  float rewindTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
+
+  float rewindTriangleDivX4 = rewindDivX + buttonDivWidth * 9.0/10.0;
+  float rewindTriangleDivY4 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  float rewindTriangleDivX5 = rewindDivX + buttonDivWidth * 1.0/2.0;
+  float rewindTriangleDivY5 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  float rewindTriangleDivX6 = rewindDivX + buttonDivWidth * 9.0/10.0;
+  float rewindTriangleDivY6 = buttonDivY + buttonDivHeight * 4.0/5.0;
+
+  // Pause Symbol DIVs
+  float pauseBarDivX1 = pauseDivX + buttonDivWidth * 1.0/4.0;
+  float pauseBarDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  float pauseBarDivWidth1 = buttonDivWidth * 1.0/6.0;
+  float pauseBarDivHeight1 = buttonDivHeight * 3.0/5.0;
+
+  float pauseBarDivX2 = pauseDivX + buttonDivWidth * 7.0/12.0;
+  float pauseBarDivY2 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  float pauseBarDivWidth2 = buttonDivWidth * 1.0/6.0;
+  float pauseBarDivHeight2 = buttonDivHeight * 3.0/5.0;
+
+  // Fast Forward Symbol DIVs
+  float fastForwardTriangleDivX1 = fastForwardDivX + buttonDivWidth * 1.0/10.0;
+  float fastForwardTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  float fastForwardTriangleDivX2 = fastForwardDivX + buttonDivWidth * 1.0/2.0;
+  float fastForwardTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  float fastForwardTriangleDivX3 = fastForwardDivX + buttonDivWidth * 1.0/10.0;
+  float fastForwardTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
+
+  float fastForwardTriangleDivX4 = fastForwardDivX + buttonDivWidth * 1.0/2.0;
+  float fastForwardTriangleDivY4 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  float fastForwardTriangleDivX5 = fastForwardDivX + buttonDivWidth * 9.0/10.0;
+  float fastForwardTriangleDivY5 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  float fastForwardTriangleDivX6 = fastForwardDivX + buttonDivWidth * 1.0/2.0;
+  float fastForwardTriangleDivY6 = buttonDivY + buttonDivHeight * 4.0/5.0;
+
+  // Skip Forward Symbol DIVs
+  float skipForwardTriangleDivX1 = skipForwardDivX + buttonDivWidth * 1.0/6.0;
+  float skipForwardTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  float skipForwardTriangleDivX2 = skipForwardDivX + buttonDivWidth * 2.0/3.0;
+  float skipForwardTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  float skipForwardTriangleDivX3 = skipForwardDivX + buttonDivWidth * 1.0/6.0;
+  float skipForwardTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
+
+  float skipForwardBarDivX = skipForwardDivX + buttonDivWidth * 3.0/4.0;
+  float skipForwardBarDivY = buttonDivY + buttonDivHeight * 1.0/5.0;
+  float skipForwardBarDivWidth = buttonDivWidth * 1.0/10.0;
+  float skipForwardBarDivHeight = buttonDivHeight * 3.0/5.0;
+
+  // Directory or Pathway to Images 
   String upArrow = "..";
+  String dependenciesFolder = "Dependencies";
+  String imagesFolder = "Images";
+  String imageName1 = "wp14072262";
+  String fileExtension = ".jpg";
   String open = "/";
-  String imageDirectory = upArrow + open + upArrow + open + "Dependencies/Images/";
-  String pathway1 = imageDirectory + "wp14072262" + ".jpg";
-  //
-  //PImage Vars + Dimensions (width & height)
-  image1 = loadImage(pathway1);
-  int imageWidthOriginal = 1920; 
-  int imageHeightOriginal = 1095;
-  //
-  //DIVs Drawing
+  String imageDirectory = upArrow + open + upArrow + open + dependenciesFolder + open + imagesFolder + open;
+  String pathway1 = imageDirectory + imageName1 + fileExtension;
+
+  // PImage Vars + Dimensions (width & height)
+  image1 = loadImage(pathway1); // Populating global variable
+
+  int imageWidth2 = 1920;
+  int imageHeight2 = 1095;
+
+  // DIVs Layout Boxes
+  rect(backDivX, backDivY, backDivWidth, backDivHeight);
   rect(searchDivX, searchDivY, searchDivWidth, searchDivHeight);
   rect(exitDivX, exitDivY, exitDivWidth, exitDivHeight);
-  rect(imgDivX, imgDivY, imgDivWidth, imgDivHeight); 
+  rect(imageDivX, imageDivY, imageDivWidth, imageDivHeight);
   rect(songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
   rect(artistDivX, artistDivY, artistDivWidth, artistDivHeight);
-  rect(progDivX, progDivY, progDivWidth, progDivHeight);
+  rect(progressBarDivX, progressBarDivY, progressBarDivWidth, progressBarDivHeight);
   rect(modifyDivX, modifyDivY, modifyDivWidth, modifyDivHeight);
   rect(speedDivX, speedDivY, speedDivWidth, speedDivHeight);
-  //
-  //2D music Symbol Shapes, 2D shapes needed to draw
-  // Button 1: Skip Back
-  rect(skipBackDivX, skipBackDivY, skipBackDivWidth, skipBackDivHeight);
-  rect(skipBackBarX, skipBackBarY, skipBackBarWidth, skipBackBarHeight);
-  triangle(skipBackTriX1, skipBackTriY2, skipBackTriX3, skipBackTriY4, skipBackTriX5, skipBackTriY6);
-  //
-  // Button 2: Rewind
-  rect(rewindDivX, rewindDivY, rewindDivWidth, rewindDivHeight);
-  triangle(rewindTri1X1, rewindTri1Y2, rewindTri1X3, rewindTri1Y4, rewindTri1X5, rewindTri1Y6);
-  triangle(rewindTri2X1, rewindTri2Y2, rewindTri2X3, rewindTri2Y4, rewindTri2X5, rewindTri2Y6);
-  //
-  // Button 3: Pause
-  rect(pauseDivX, pauseDivY, pauseDivWidth, pauseDivHeight);
-  rect(pauseBar1X, pauseBar1Y, pauseBar1Width, pauseBar1Height);
-  rect(pauseBar2X, pauseBar2Y, pauseBar2Width, pauseBar2Height);
-  //
-  // Button 4: Fast Forward
-  rect(ffDivX, ffDivY, ffDivWidth, ffDivHeight);
-  triangle(ffTri1X1, ffTri1Y2, ffTri1X3, ffTri1Y4, ffTri1X5, ffTri1Y6);
-  triangle(ffTri2X1, ffTri2Y2, ffTri2X3, ffTri2Y4, ffTri2X5, ffTri2Y6);
-  //
-  // Button 5: Skip Forward
-  rect(skipForwardDivX, skipForwardDivY, skipForwardDivWidth, skipForwardDivHeight);
-  triangle(skipForwardTriX1, skipForwardTriY2, skipForwardTriX3, skipForwardTriY4, skipForwardTriX5, skipForwardTriY6);
-  rect(skipForwardBarX, skipForwardBarY, skipForwardBarWidth, skipForwardBarHeight);
-  //
-  //Images & Aspect Ratio Algoritrhm, including WHILE Loop
-  float imageAspectRatio = ( imageWidthOriginal > imageHeightOriginal ) ? float(imageWidthOriginal) / float(imageHeightOriginal) : float(imageHeightOriginal) / float(imageWidthOriginal) ;
-  imageWidthAdjusted = imgDivWidth;
-  imageHeightAdjusted = ( imageWidthOriginal >= imgDivWidth ) ? imageWidthAdjusted / imageAspectRatio : imageWidthAdjusted * imageAspectRatio ;
-        
-  while ( imageHeightAdjusted > imgDivHeight ) {
-    imageWidthAdjusted *= 0.99;
-    imageHeightAdjusted = imageWidthAdjusted / imageAspectRatio ; 
-  }//End WHILE
-  //
-  image(image1, imgDivX + (imgDivWidth - imageWidthAdjusted)/2, imgDivY + (imgDivHeight - imageHeightAdjusted)/2, imageWidthAdjusted, imageHeightAdjusted);
-  //
-  //Drawing Text - Formatting Text Functions & Ink Variables
-  // Colors and Ink
-  color darkpurpleInk = #585062; 
-  fill(darkpurpleInk); 
-  textAlign(CENTER, CENTER); 
-  float constantDecrease = 0.99;
 
-  // Strings, Text, Literal
-  String title = "Die for me"; 
-  String artist = "Chase Atlantic";
-  String searchLabel = "Search Lyric"; 
-  String modifyText = "Modify";
+  // 2D music Symbol Shapes
+  rect(skipBackDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
+  rect(rewindDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
+  rect(pauseDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
+  rect(fastForwardDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
+  rect(skipForwardDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
 
-  // Fonts
-  PFont mainFont = createFont("Century Schoolbook", 48);
+  rect(skipBackBarDivX, skipBackBarDivY, skipBackBarDivWidth, skipBackBarDivHeight);
+  triangle(skipBackTriangleDivX1, skipBackTriangleDivY1, skipBackTriangleDivX2, skipBackTriangleDivY2, skipBackTriangleDivX3, skipBackTriangleDivY3);
 
-  // 1. Draw Quit 
-  textFont(mainFont, exitDivHeight * 0.9);
-  text("X", exitDivX, exitDivY, exitDivWidth, exitDivHeight);
+  triangle(rewindTriangleDivX1, rewindTriangleDivY1, rewindTriangleDivX2, rewindTriangleDivY2, rewindTriangleDivX3, rewindTriangleDivY3);
+  triangle(rewindTriangleDivX4, rewindTriangleDivY4, rewindTriangleDivX5, rewindTriangleDivY5, rewindTriangleDivX6, rewindTriangleDivY6);
 
-  // 2. Draw Song Title
-  float fontSizeBottom = songTitleDivHeight * 0.9;
-  textFont(mainFont, fontSizeBottom);
-  while (textWidth(title) > songTitleDivWidth) {
-    fontSizeBottom *= constantDecrease;
-    textFont(mainFont, fontSizeBottom);
-  }
-  text(title, songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
+  rect(pauseBarDivX1, pauseBarDivY1, pauseBarDivWidth1, pauseBarDivHeight1);
+  rect(pauseBarDivX2, pauseBarDivY2, pauseBarDivWidth2, pauseBarDivHeight2);
 
-  // 3. Draw Artist
-  float fontSizeArtist = artistDivHeight * 0.9;
-  textFont(mainFont, fontSizeArtist);
-  while (textWidth(artist) > artistDivWidth) {
-    fontSizeArtist *= constantDecrease;
-    textFont(mainFont, fontSizeArtist);
-  }
-  text(artist, artistDivX, artistDivY, artistDivWidth, artistDivHeight);
+  triangle(fastForwardTriangleDivX1, fastForwardTriangleDivY1, fastForwardTriangleDivX2, fastForwardTriangleDivY2, fastForwardTriangleDivX3, fastForwardTriangleDivY3);
+  triangle(fastForwardTriangleDivX4, fastForwardTriangleDivY4, fastForwardTriangleDivX5, fastForwardTriangleDivY5, fastForwardTriangleDivX6, fastForwardTriangleDivY6);
 
-  // 4. Draw Modify Button 
-  float fontSizeMod = modifyDivHeight * 0.7;
-  textFont(mainFont, fontSizeMod);
+  triangle(skipForwardTriangleDivX1, skipForwardTriangleDivY1, skipForwardTriangleDivX2, skipForwardTriangleDivY2, skipForwardTriangleDivX3, skipForwardTriangleDivY3);
+  rect(skipForwardBarDivX, skipForwardBarDivY, skipForwardBarDivWidth, skipForwardBarDivHeight);
+
+  // Images & Aspect Ratio Algorithm, including WHILE Loop
+  float image2AspectRatio_GreatOne = ( imageWidth2 > imageHeight2 ) ? float(imageWidth2) / float(imageHeight2) : float(imageHeight2) / float(imageWidth2);
+  float imageWidthAdjusted2 = imageDivWidth;
+  float imageHeightAdjusted1 = ( imageWidth2 >= imageDivWidth ) ? imageWidthAdjusted2 / image2AspectRatio_GreatOne : imageWidthAdjusted2 * image2AspectRatio_GreatOne;
+
+  while ( imageHeightAdjusted1 > imageDivHeight ) {
+    imageWidthAdjusted2 *= 0.99;
+    imageHeightAdjusted1 = imageWidthAdjusted2 / image2AspectRatio_GreatOne;
+  } 
   
-  // Dynamic scale reduction check for "Modify" string width alone
-  while (textWidth(modifyText) > modifyDivWidth) {
-    fontSizeMod *= constantDecrease;
-    textFont(mainFont, fontSizeMod);
+  // Render the image
+  if (image1 != null) {
+    image(
+      image1,
+      imageDivX + (imageDivWidth-imageWidthAdjusted2)/2,
+      imageDivY + (imageDivHeight-imageHeightAdjusted1)/2,
+      imageWidthAdjusted2,
+      imageHeightAdjusted1
+    );
   }
-
-  // Draw "Modify" centered smoothly within its designated block boundary
-  text(modifyText, modifyDivX, modifyDivY, modifyDivWidth, modifyDivHeight);
-
-  // 5. Draw Search Lyric
-  float fontSizeSearch = searchDivHeight * 0.9;
-  textFont(mainFont, fontSizeSearch);
-  while (textWidth(searchLabel) > searchDivWidth) {
-    fontSizeSearch *= constantDecrease;
-    textFont(mainFont, fontSizeSearch);
-  }
-  text(searchLabel, searchDivX, searchDivY, searchDivWidth, searchDivHeight);
-  
 }//End Setup
-//
+
 void draw() {
-  //2D Music Symbol Changes
-}//End Draw
-//
+}
+
 void mousePressed() {
-  //2D Music Symbol Changes
-}//End Mouse Pressed
-//
+}
+
 void keyPressed() {
-}//End Key Pressed
-//
-//End MAIN Program
+}
