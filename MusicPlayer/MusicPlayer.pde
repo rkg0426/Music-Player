@@ -181,8 +181,8 @@ void setup() {
   String imagesFolder = "Images";
   String imageName1 = "wp14072262";
   String fileExtension = ".jpg";
-  String slash = "/";
-  String imageDirectory = upArrow + slash + upArrow + slash + dependenciesFolder + slash + imagesFolder + slash;
+  String open = "/";
+  String imageDirectory = upArrow + open + upArrow + open + dependenciesFolder + open + imagesFolder + open;
   String pathway1 = imageDirectory + imageName1 + fileExtension;
   //
   //PImage Vars + Dimensions (width & height)
