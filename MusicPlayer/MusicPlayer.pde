@@ -15,7 +15,29 @@ import ddf.minim.ugens.*;
  */
 PImage image1;
 //
+Minim minim;
 
+int numberOfSongs = 1;
+int numberOfSoundEffect = 1;
+
+AudioPlayer[] playList = new AudioPlayer[numberOfSongs];
+AudioMetaData[] playListMetaData = new AudioMetaData[numberOfSongs];
+AudioPlayer[] soundEffects = new AudioPlayer[numberOfSoundEffect];
+
+int currentSong = numberOfSongs - numberOfSongs;
+//Music Button Variables
+float buttonDivWidth;
+float buttonDivHeight;
+float buttonDivY;
+
+float skipBackDivX;
+float rewindDivX;
+float pauseDivX;
+float fastForwardDivX;
+float skipForwardDivX;
+
+boolean pauseButtonPressed = false;
+//
 void setup() {
 
   //Display
@@ -43,9 +65,9 @@ void setup() {
   float exitDivHeight = appHeight * 13 / paperHeight;
 
   //Image DIV
-  float imageDivX = appWidth * 20 / paperWidth;
+  float imageDivX = appWidth * 65 / paperWidth;
   float imageDivY = appHeight * 50 / paperHeight;
-  float imageDivWidth = appWidth * 175 / paperWidth;
+  float imageDivWidth = appWidth * 85 / paperWidth;
   float imageDivHeight = appHeight * 101 / paperHeight;
 
   //Song Title DIV
@@ -96,17 +118,16 @@ void setup() {
   //
   //2D Music Symbol Variables
   //
+   buttonDivWidth = appWidth * 3.0/17.5;
+   buttonDivHeight = appHeight * 3.0/35.0;
+   buttonDivY = appHeight * 28.5/35.0;
 
-  float buttonDivWidth = appWidth * 3.0/17.5;
-  float buttonDivHeight = appHeight * 3.0/35.0;
-  float buttonDivY = appHeight * 28.5/35.0;
-
-  // Button X Positions
-  float skipBackDivX = appWidth * 0.4/17.5;
-  float rewindDivX = appWidth * 3.8/17.5;
-  float pauseDivX = appWidth * 7.25/17.5;
-  float fastForwardDivX = appWidth * 10.7/17.5;
-  float skipForwardDivX = appWidth * 14.1/17.5;
+  // Button Positions
+   skipBackDivX = appWidth * 0.4/17.5;
+   rewindDivX = appWidth * 3.8/17.5;
+   pauseDivX = appWidth * 7.25/17.5;
+   fastForwardDivX = appWidth * 10.7/17.5;
+   skipForwardDivX = appWidth * 14.1/17.5;
 
   // Skip Back Symbol DIVs
   float skipBackBarDivX = skipBackDivX + buttonDivWidth * 1.0/6.0;
@@ -185,6 +206,52 @@ void setup() {
   String imageDirectory = upArrow + open + upArrow + open + dependenciesFolder + open + imagesFolder + open;
   String pathway1 = imageDirectory + imageName1 + fileExtension;
   //
+  //Music Loading
+  minim = new Minim(this);
+
+  String musicFolder = "Music";
+  String soundEffectsFolder = "Sound Effects";
+
+  String[] songName = new String[numberOfSongs];
+
+  songName[currentSong] = "Chase Atlantic - Swim";
+
+  String soundEffect1 = "Wood_Door_Open_and_Close_Series";
+  String fileExtension_mp3 = ".mp3";
+
+  String musicDirectory = upArrow + open + upArrow + open + dependenciesFolder + open + musicFolder + open;
+  String soundEffectsDirectory = upArrow + open + upArrow + open + dependenciesFolder + open + soundEffectsFolder + open;
+
+  String pathway;
+
+  for (int i=0; i<numberOfSongs; i++) {
+
+    pathway = musicDirectory + songName[i] + fileExtension_mp3;
+
+    playList[i] = minim.loadFile(pathway);
+
+    playListMetaData[i] = playList[i].getMetaData();
+  }
+
+  pathway = soundEffectsDirectory + soundEffect1 + fileExtension_mp3;
+
+  soundEffects[currentSong] = minim.loadFile(pathway);
+  for (int i=0; i<numberOfSongs; i++) {
+
+    if (playList[i] == null) {
+
+      println("The Play List did not load properly");
+      printArray(playList);
+      exit();
+    }
+  }
+
+  if (soundEffects[currentSong] == null) {
+
+    println("The Sound Effects did not load properly");
+    printArray(soundEffects);
+    exit();
+  }
   //PImage Vars + Dimensions (width & height)
   image1 = loadImage(pathway1);
   println(pathway1);
@@ -328,13 +395,13 @@ void setup() {
     imageWidthAdjusted2 *= 0.99;
     imageHeightAdjusted1 = imageWidthAdjusted2 / image2AspectRatio_GreatOne;
   }
-    image(
-   image1,
-   imageDivX + (imageDivWidth-imageWidthAdjusted2)/2,
-   imageDivY + (imageDivHeight-imageHeightAdjusted1)/2,
-   imageWidthAdjusted2,
-   imageHeightAdjusted1
-  );
+  image(
+    image1,
+    imageDivX + (imageDivWidth-imageWidthAdjusted2)/2,
+    imageDivY + (imageDivHeight-imageHeightAdjusted1)/2,
+    imageWidthAdjusted2,
+    imageHeightAdjusted1
+    );
 }//End Setup
 
 void draw() {
@@ -343,10 +410,74 @@ void draw() {
 
 void mousePressed() {
   //2D Music Symbol Changes: sending Boolean to draw()
+
+  if (
+    mouseX > pauseDivX &&
+    mouseX < pauseDivX + buttonDivWidth &&
+    mouseY > buttonDivY &&
+    mouseY < buttonDivY + buttonDivHeight
+    ) {
+
+    if (playList[currentSong].isPlaying()) {
+
+      playList[currentSong].pause();
+
+    } else {
+
+      playList[currentSong].play();
+
+    }
+  }
 }//End Mouse Pressed
 
 void keyPressed() {
   //Key Board Short Cuts for Music Features, built from limited Minim Library Functions
+
+  if (key=='P' || key=='p') playList[currentSong].loop(0);
+
+  if (key=='O' || key=='o') {
+
+    if (playList[currentSong].isPlaying()) {
+
+      playList[currentSong].pause();
+
+    } else {
+
+      playList[currentSong].play();
+    }
+  }
+
+  if (key=='S' || key=='s') {
+
+    if (playList[currentSong].isPlaying()) {
+
+      playList[currentSong].pause();
+
+    } else {
+
+      playList[currentSong].rewind();
+    }
+  }
+
+  if (key=='L' || key=='l') playList[currentSong].loop(1);
+
+  if (key=='K' || key=='k') playList[currentSong].loop();
+
+  if (key=='F' || key=='f') playList[currentSong].skip(10000);
+
+  if (key=='R' || key=='r') playList[currentSong].skip(-10000);
+
+  if (key=='W' || key=='w') {
+
+    if (playList[currentSong].isMuted()) {
+
+      playList[currentSong].unmute();
+
+    } else {
+
+      playList[currentSong].mute();
+    }
+  }
 }//End Key Pressed
 
 //End MAIN Program
