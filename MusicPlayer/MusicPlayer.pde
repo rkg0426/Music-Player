@@ -1,4 +1,5 @@
-/* Music App, Final Project */
+/* Music App, Final Project
+ */
 //
 //Minim Library - Do not copy, only add through File / Sketch
 import ddf.minim.*;
@@ -8,8 +9,12 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
-/* Global Variables */
-PImage image1; 
+/* Global Variables
+ - Possible DIV-vars needed in draw(), etc.
+ - MUST: Music Button-vars, possibly associated DIV-vars
+ */
+PImage image1;
+//
 
 void setup() {
 
@@ -20,65 +25,78 @@ void setup() {
   int appWidth = displayWidth;
   int appHeight = displayHeight;
 
-  // DIVs Population using unitless ratios
+  //
+  //DIVs Population using unitless ratios (i.e. millimeters to pixels)
   int paperWidth = 216;
   int paperHeight = 279;
 
-  // --- BACKGROUND DIV ---
-  float backDivX = appWidth * 10 / paperWidth;
-  float backDivY = appHeight * 3 / paperHeight;
-  float backDivWidth = appWidth * 20 / paperWidth;
-  float backDivHeight = appHeight * 13 / paperHeight;
-
-  // --- SEARCH DIV ---
+  //Search DIV
   float searchDivX = appWidth * 71 / paperWidth;
   float searchDivY = appHeight * 15 / paperHeight;
   float searchDivWidth = appWidth * 74 / paperWidth;
   float searchDivHeight = appHeight * 15 / paperHeight;
 
-  // --- EXIT DIV ---
+  //EXit DIV
   float exitDivX = appWidth * 193 / paperWidth;
   float exitDivY = appHeight * 3 / paperHeight;
   float exitDivWidth = appWidth * 20 / paperWidth;
   float exitDivHeight = appHeight * 13 / paperHeight;
 
-  // --- IMAGE DIV ---
+  //Image DIV
   float imageDivX = appWidth * 20 / paperWidth;
   float imageDivY = appHeight * 50 / paperHeight;
   float imageDivWidth = appWidth * 175 / paperWidth;
   float imageDivHeight = appHeight * 101 / paperHeight;
 
-  // --- SONG TITLE DIV ---
+  //Song Title DIV
   float songTitleDivX = appWidth * 20 / paperWidth;
   float songTitleDivY = appHeight * 180 / paperHeight;
   float songTitleDivWidth = appWidth * 145 / paperWidth;
   float songTitleDivHeight = appHeight * 15 / paperHeight;
 
-  // --- ARTIST DIV ---
+  //Artist DIV
   float artistDivX = appWidth * 20 / paperWidth;
   float artistDivY = appHeight * 200 / paperHeight;
   float artistDivWidth = appWidth * 77 / paperWidth;
   float artistDivHeight = appHeight * 9 / paperHeight;
 
-  // --- PROGRESS BAR DIV ---
+  //Progress Bar DIV
   float progressBarDivX = appWidth * 20 / paperWidth;
   float progressBarDivY = appHeight * 220 / paperHeight;
   float progressBarDivWidth = appWidth * 175 / paperWidth;
   float progressBarDivHeight = appHeight * 3 / paperHeight;
 
-  // --- MODIFY DIV ---
+  //Modify DIV
   float modifyDivX = appWidth * 20 / paperWidth;
   float modifyDivY = appHeight * 260 / paperHeight;
   float modifyDivWidth = appWidth * 20 / paperWidth;
   float modifyDivHeight = appHeight * 10 / paperHeight;
 
-  // --- SPEED DIV ---
-  float speedDivX = appWidth * 62 / paperWidth;
-  float speedDivY = appHeight * 320 / paperHeight;
-  float speedDivWidth = appWidth * 91 / paperWidth;
-  float speedDivHeight = appHeight * 10 / paperHeight;
 
-  // 2D Music Symbol Variables
+  //
+  //Text Setup, includes text & font variables
+  //
+
+  //
+  //Literal Text ... String Variables
+  String songTitle = "Swim";
+  String artistName = "Chase Atlantic";
+  String modifyText = "Modify";
+  String searchText = "Search Lyric";
+  String exitText = "X";
+
+  //
+  //Font Size Variables, corrleated with DIV-Height Variables
+  float fontSize1 = songTitleDivHeight;
+  float fontSize2 = artistDivHeight;
+  float fontSize3 = modifyDivHeight;
+  float fontSize4 = searchDivHeight;
+  float fontSize5 = exitDivHeight;
+
+  //
+  //2D Music Symbol Variables
+  //
+
   float buttonDivWidth = appWidth * 3.0/17.5;
   float buttonDivHeight = appHeight * 3.0/35.0;
   float buttonDivY = appHeight * 28.5/35.0;
@@ -156,25 +174,26 @@ void setup() {
   float skipForwardBarDivY = buttonDivY + buttonDivHeight * 1.0/5.0;
   float skipForwardBarDivWidth = buttonDivWidth * 1.0/10.0;
   float skipForwardBarDivHeight = buttonDivHeight * 3.0/5.0;
-
-  // Directory or Pathway to Images 
+  //
+  //Directory or Pathway to Images
   String upArrow = "..";
   String dependenciesFolder = "Dependencies";
   String imagesFolder = "Images";
   String imageName1 = "wp14072262";
   String fileExtension = ".jpg";
-  String open = "/";
-  String imageDirectory = upArrow + open + upArrow + open + dependenciesFolder + open + imagesFolder + open;
+  String slash = "/";
+  String imageDirectory = upArrow + slash + upArrow + slash + dependenciesFolder + slash + imagesFolder + slash;
   String pathway1 = imageDirectory + imageName1 + fileExtension;
-
-  // PImage Vars + Dimensions (width & height)
-  image1 = loadImage(pathway1); // Populating global variable
+  //
+  //PImage Vars + Dimensions (width & height)
+  image1 = loadImage(pathway1);
+  println(pathway1);
 
   int imageWidth2 = 1920;
   int imageHeight2 = 1095;
-
-  // DIVs Layout Boxes
-  rect(backDivX, backDivY, backDivWidth, backDivHeight);
+  //
+  //DIVs
+  //
   rect(searchDivX, searchDivY, searchDivWidth, searchDivHeight);
   rect(exitDivX, exitDivY, exitDivWidth, exitDivHeight);
   rect(imageDivX, imageDivY, imageDivWidth, imageDivHeight);
@@ -182,9 +201,9 @@ void setup() {
   rect(artistDivX, artistDivY, artistDivWidth, artistDivHeight);
   rect(progressBarDivX, progressBarDivY, progressBarDivWidth, progressBarDivHeight);
   rect(modifyDivX, modifyDivY, modifyDivWidth, modifyDivHeight);
-  rect(speedDivX, speedDivY, speedDivWidth, speedDivHeight);
-
-  // 2D music Symbol Shapes
+  //
+  //2D music Symbol Shapes, 2D shapes needed to draw
+  //
   rect(skipBackDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
   rect(rewindDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
   rect(pauseDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
@@ -205,34 +224,129 @@ void setup() {
 
   triangle(skipForwardTriangleDivX1, skipForwardTriangleDivY1, skipForwardTriangleDivX2, skipForwardTriangleDivY2, skipForwardTriangleDivX3, skipForwardTriangleDivY3);
   rect(skipForwardBarDivX, skipForwardBarDivY, skipForwardBarDivWidth, skipForwardBarDivHeight);
+  //
+  //Drawing Text - Formatting Text Functions & Ink Variables
+  color darkPurpleInk = #585062;
 
-  // Images & Aspect Ratio Algorithm, including WHILE Loop
+  PFont font;
+  String centurySchoolbook = "Century Schoolbook";
+  font = createFont(centurySchoolbook, fontSize1);
+
+  fill(darkPurpleInk);
+  textAlign(CENTER, CENTER);
+
+  float constantDecrease = 0.99;
+  int iWhile = 0;
+
+  //
+  //Drawing Text - Font Size Adustement (WHILE Loop)
+  textFont(font, fontSize1);
+
+  while ( textWidth(songTitle) > songTitleDivWidth ) {
+    iWhile++;
+    if ( iWhile > 10000 ) {
+      println("Infinite WHILE Loop");
+      exit();
+    }
+    fontSize1 *= constantDecrease;
+    textFont(font, fontSize1);
+  }
+  iWhile = 0;
+  textFont(font, fontSize2);
+
+  while ( textWidth(artistName) > artistDivWidth ) {
+    iWhile++;
+    if ( iWhile > 10000 ) {
+      println("Infinite WHILE Loop");
+      exit();
+    }
+    fontSize2 *= constantDecrease;
+    textFont(font, fontSize2);
+  }
+  iWhile = 0;
+  textFont(font, fontSize3);
+
+  while ( textWidth(modifyText) > modifyDivWidth ) {
+    iWhile++;
+    if ( iWhile > 10000 ) {
+      println("Infinite WHILE Loop");
+      exit();
+    }
+    fontSize3 *= constantDecrease;
+    textFont(font, fontSize3);
+  }
+  iWhile = 0;
+  textFont(font, fontSize4);
+
+  while ( textWidth(searchText) > searchDivWidth ) {
+    iWhile++;
+    if ( iWhile > 10000 ) {
+      println("Infinite WHILE Loop");
+      exit();
+    }
+    fontSize4 *= constantDecrease;
+    textFont(font, fontSize4);
+  }
+  iWhile = 0;
+  textFont(font, fontSize5);
+
+  while ( textWidth(exitText) > exitDivWidth ) {
+    iWhile++;
+    if ( iWhile > 10000 ) {
+      println("Infinite WHILE Loop");
+      exit();
+    }
+    fontSize5 *= constantDecrease;
+    textFont(font, fontSize5);
+  }
+  //
+  //Draw Text with adjusted DIV Variables
+  textFont(font, fontSize1);
+  text(songTitle, songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
+
+  textFont(font, fontSize2);
+  text(artistName, artistDivX, artistDivY, artistDivWidth, artistDivHeight);
+
+  textFont(font, fontSize3);
+  text(modifyText, modifyDivX, modifyDivY, modifyDivWidth, modifyDivHeight);
+
+  textFont(font, fontSize4);
+  text(searchText, searchDivX, searchDivY, searchDivWidth, searchDivHeight);
+
+  textFont(font, fontSize5);
+  text(exitText, exitDivX, exitDivY, exitDivWidth, exitDivHeight);
+
+  //
+  //Images & Aspect Ratio Algoritrhm, including WHILE Loop
   float image2AspectRatio_GreatOne = ( imageWidth2 > imageHeight2 ) ? float(imageWidth2) / float(imageHeight2) : float(imageHeight2) / float(imageWidth2);
+
   float imageWidthAdjusted2 = imageDivWidth;
+
   float imageHeightAdjusted1 = ( imageWidth2 >= imageDivWidth ) ? imageWidthAdjusted2 / image2AspectRatio_GreatOne : imageWidthAdjusted2 * image2AspectRatio_GreatOne;
 
   while ( imageHeightAdjusted1 > imageDivHeight ) {
     imageWidthAdjusted2 *= 0.99;
     imageHeightAdjusted1 = imageWidthAdjusted2 / image2AspectRatio_GreatOne;
-  } 
-  
-  // Render the image
-  if (image1 != null) {
-    image(
-      image1,
-      imageDivX + (imageDivWidth-imageWidthAdjusted2)/2,
-      imageDivY + (imageDivHeight-imageHeightAdjusted1)/2,
-      imageWidthAdjusted2,
-      imageHeightAdjusted1
-    );
   }
+    image(
+   image1,
+   imageDivX + (imageDivWidth-imageWidthAdjusted2)/2,
+   imageDivY + (imageDivHeight-imageHeightAdjusted1)/2,
+   imageWidthAdjusted2,
+   imageHeightAdjusted1
+  );
 }//End Setup
 
 void draw() {
-}
+  //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
+}//End Draw
 
 void mousePressed() {
-}
+  //2D Music Symbol Changes: sending Boolean to draw()
+}//End Mouse Pressed
 
 void keyPressed() {
-}
+  //Key Board Short Cuts for Music Features, built from limited Minim Library Functions
+}//End Key Pressed
+
+//End MAIN Program
