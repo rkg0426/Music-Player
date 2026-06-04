@@ -1,4 +1,3 @@
-
 /* Music App, Final Project
  */
 //
