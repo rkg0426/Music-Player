@@ -14,6 +14,8 @@ import ddf.minim.ugens.*;
  - MUST: Music Button-vars, possibly associated DIV-vars
  */
 PImage image1;
+PImage image2;
+PImage image3;
 //
 Minim minim;
 
@@ -259,6 +261,14 @@ void setup() {
   //PImage Vars + Dimensions (width & height)
   image1 = loadImage(pathway1);
   println(pathway1);
+  String imageName2 = "a1533768925_10";
+  String imageName3 = "ChaseAtlanticCover";
+
+  String pathway2 = imageDirectory + imageName2 + fileExtension;
+  String pathway3 = imageDirectory + imageName3 + ".jpeg";
+
+  image2 = loadImage(pathway2);
+  image3 = loadImage(pathway3);
 
   int imageWidth2 = 1920;
   int imageHeight2 = 1095;
