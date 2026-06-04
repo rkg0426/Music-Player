@@ -17,7 +17,7 @@ PImage image1;
 //
 Minim minim;
 
-int numberOfSongs = 1;
+int numberOfSongs = 3;
 int numberOfSoundEffect = 1;
 
 AudioPlayer[] playList = new AudioPlayer[numberOfSongs];
@@ -118,16 +118,16 @@ void setup() {
   //
   //2D Music Symbol Variables
   //
-   buttonDivWidth = appWidth * 3.0/17.5;
-   buttonDivHeight = appHeight * 3.0/35.0;
-   buttonDivY = appHeight * 28.5/35.0;
+  buttonDivWidth = appWidth * 3.0/17.5;
+  buttonDivHeight = appHeight * 3.0/35.0;
+  buttonDivY = appHeight * 28.5/35.0;
 
   // Button Positions
-   skipBackDivX = appWidth * 0.4/17.5;
-   rewindDivX = appWidth * 3.8/17.5;
-   pauseDivX = appWidth * 7.25/17.5;
-   fastForwardDivX = appWidth * 10.7/17.5;
-   skipForwardDivX = appWidth * 14.1/17.5;
+  skipBackDivX = appWidth * 0.4/17.5;
+  rewindDivX = appWidth * 3.8/17.5;
+  pauseDivX = appWidth * 7.25/17.5;
+  fastForwardDivX = appWidth * 10.7/17.5;
+  skipForwardDivX = appWidth * 14.1/17.5;
 
   // Skip Back Symbol DIVs
   float skipBackBarDivX = skipBackDivX + buttonDivWidth * 1.0/6.0;
@@ -214,7 +214,11 @@ void setup() {
 
   String[] songName = new String[numberOfSongs];
 
-  songName[currentSong] = "Chase Atlantic - Swim";
+  songName[0] = "Chase Atlantic - Swim";
+  songName[1] = "friends";
+  songName[2] = "Into It - Chase Atlantic";
+
+  currentSong = 0;
 
   String soundEffect1 = "Wood_Door_Open_and_Close_Series";
   String fileExtension_mp3 = ".mp3";
@@ -421,12 +425,42 @@ void mousePressed() {
     if (playList[currentSong].isPlaying()) {
 
       playList[currentSong].pause();
-
     } else {
 
       playList[currentSong].play();
-
     }
+  }
+  if (
+    mouseX > skipForwardDivX &&
+    mouseX < skipForwardDivX + buttonDivWidth &&
+    mouseY > buttonDivY &&
+    mouseY < buttonDivY + buttonDivHeight
+    ) {
+
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+
+    currentSong++;
+
+    if (currentSong >= numberOfSongs) currentSong = 0;
+
+    playList[currentSong].play();
+  }
+  if (
+    mouseX > skipBackDivX &&
+    mouseX < skipBackDivX + buttonDivWidth &&
+    mouseY > buttonDivY &&
+    mouseY < buttonDivY + buttonDivHeight
+    ) {
+
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+
+    currentSong--;
+
+    if (currentSong < 0) currentSong = numberOfSongs - 1;
+
+    playList[currentSong].play();
   }
 }//End Mouse Pressed
 
@@ -440,7 +474,6 @@ void keyPressed() {
     if (playList[currentSong].isPlaying()) {
 
       playList[currentSong].pause();
-
     } else {
 
       playList[currentSong].play();
@@ -452,7 +485,6 @@ void keyPressed() {
     if (playList[currentSong].isPlaying()) {
 
       playList[currentSong].pause();
-
     } else {
 
       playList[currentSong].rewind();
@@ -464,7 +496,28 @@ void keyPressed() {
   if (key=='K' || key=='k') playList[currentSong].loop();
 
   if (key=='F' || key=='f') playList[currentSong].skip(10000);
+  if (keyCode == RIGHT) {
 
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+
+    currentSong++;
+
+    if (currentSong >= numberOfSongs) currentSong = 0;
+
+    playList[currentSong].play();
+  }
+  if (keyCode == LEFT) {
+
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+
+    currentSong--;
+
+    if (currentSong < 0) currentSong = numberOfSongs - 1;
+
+    playList[currentSong].play();
+  }
   if (key=='R' || key=='r') playList[currentSong].skip(-10000);
 
   if (key=='W' || key=='w') {
@@ -472,7 +525,6 @@ void keyPressed() {
     if (playList[currentSong].isMuted()) {
 
       playList[currentSong].unmute();
-
     } else {
 
       playList[currentSong].mute();
