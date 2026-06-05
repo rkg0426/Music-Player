@@ -16,11 +16,16 @@ import ddf.minim.ugens.*;
 PImage image1;
 PImage image2;
 PImage image3;
+
+float imageWidthAdjusted2;
+float imageHeightAdjusted1;
 //
 Minim minim;
 
 int numberOfSongs = 3;
 int numberOfSoundEffect = 1;
+
+String[] songTitle = new String[numberOfSongs];
 
 AudioPlayer[] playList = new AudioPlayer[numberOfSongs];
 AudioMetaData[] playListMetaData = new AudioMetaData[numberOfSongs];
@@ -37,6 +42,20 @@ float rewindDivX;
 float pauseDivX;
 float fastForwardDivX;
 float skipForwardDivX;
+
+float imageDivX;
+float imageDivY;
+float imageDivWidth;
+float imageDivHeight;
+
+float songTitleDivX;
+float songTitleDivY;
+float songTitleDivWidth;
+float songTitleDivHeight;
+
+float fontSize1;
+
+PFont font;
 
 boolean pauseButtonPressed = false;
 //
@@ -67,16 +86,16 @@ void setup() {
   float exitDivHeight = appHeight * 13 / paperHeight;
 
   //Image DIV
-  float imageDivX = appWidth * 65 / paperWidth;
-  float imageDivY = appHeight * 50 / paperHeight;
-  float imageDivWidth = appWidth * 85 / paperWidth;
-  float imageDivHeight = appHeight * 101 / paperHeight;
+  imageDivX = appWidth * 65 / paperWidth;
+  imageDivY = appHeight * 50 / paperHeight;
+  imageDivWidth = appWidth * 85 / paperWidth;
+  imageDivHeight = appHeight * 101 / paperHeight;
 
   //Song Title DIV
-  float songTitleDivX = appWidth * 20 / paperWidth;
-  float songTitleDivY = appHeight * 180 / paperHeight;
-  float songTitleDivWidth = appWidth * 145 / paperWidth;
-  float songTitleDivHeight = appHeight * 15 / paperHeight;
+  songTitleDivX = appWidth * 20 / paperWidth;
+  songTitleDivY = appHeight * 180 / paperHeight;
+  songTitleDivWidth = appWidth * 145 / paperWidth;
+  songTitleDivHeight = appHeight * 15 / paperHeight;
 
   //Artist DIV
   float artistDivX = appWidth * 20 / paperWidth;
@@ -103,7 +122,10 @@ void setup() {
 
   //
   //Literal Text ... String Variables
-  String songTitle = "Swim";
+
+  songTitle[0] = "Swim";
+  songTitle[1] = "Friends";
+  songTitle[2] = "Into It";
   String artistName = "Chase Atlantic";
   String modifyText = "Modify";
   String searchText = "Search Lyric";
@@ -111,7 +133,7 @@ void setup() {
 
   //
   //Font Size Variables, corrleated with DIV-Height Variables
-  float fontSize1 = songTitleDivHeight;
+  fontSize1 = songTitleDivHeight;
   float fontSize2 = artistDivHeight;
   float fontSize3 = modifyDivHeight;
   float fontSize4 = searchDivHeight;
@@ -309,7 +331,6 @@ void setup() {
   //Drawing Text - Formatting Text Functions & Ink Variables
   color darkPurpleInk = #585062;
 
-  PFont font;
   String centurySchoolbook = "Century Schoolbook";
   font = createFont(centurySchoolbook, fontSize1);
 
@@ -322,8 +343,7 @@ void setup() {
   //
   //Drawing Text - Font Size Adustement (WHILE Loop)
   textFont(font, fontSize1);
-
-  while ( textWidth(songTitle) > songTitleDivWidth ) {
+  while ( textWidth(songTitle[currentSong]) > songTitleDivWidth ) {
     iWhile++;
     if ( iWhile > 10000 ) {
       println("Infinite WHILE Loop");
@@ -382,9 +402,6 @@ void setup() {
   }
   //
   //Draw Text with adjusted DIV Variables
-  textFont(font, fontSize1);
-  text(songTitle, songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
-
   textFont(font, fontSize2);
   text(artistName, artistDivX, artistDivY, artistDivWidth, artistDivHeight);
 
@@ -401,15 +418,27 @@ void setup() {
   //Images & Aspect Ratio Algoritrhm, including WHILE Loop
   float image2AspectRatio_GreatOne = ( imageWidth2 > imageHeight2 ) ? float(imageWidth2) / float(imageHeight2) : float(imageHeight2) / float(imageWidth2);
 
-  float imageWidthAdjusted2 = imageDivWidth;
+  imageWidthAdjusted2 = imageDivWidth;
 
-  float imageHeightAdjusted1 = ( imageWidth2 >= imageDivWidth ) ? imageWidthAdjusted2 / image2AspectRatio_GreatOne : imageWidthAdjusted2 * image2AspectRatio_GreatOne;
+  imageHeightAdjusted1 = ( imageWidth2 >= imageDivWidth ) ? imageWidthAdjusted2 / image2AspectRatio_GreatOne : imageWidthAdjusted2 * image2AspectRatio_GreatOne;
   //
   while ( imageHeightAdjusted1 > imageDivHeight ) {
     imageWidthAdjusted2 *= 0.99;
     imageHeightAdjusted1 = imageWidthAdjusted2 / image2AspectRatio_GreatOne;
   }
+}//End Setup
 
+void draw() {
+  //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
+  fill(255);
+  noStroke();
+  rect(songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
+
+  fill(#585062);
+  textFont(font, fontSize1);
+  text(songTitle[currentSong], songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
+  textFont(font, fontSize1);
+  text(songTitle[currentSong], songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
   PImage currentImage = image1;
 
   if (currentSong == 1) currentImage = image2;
@@ -422,10 +451,6 @@ void setup() {
     imageWidthAdjusted2,
     imageHeightAdjusted1
     );
-}//End Setup
-
-void draw() {
-  //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }//End Draw
 
 void mousePressed() {
