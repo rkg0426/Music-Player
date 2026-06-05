@@ -125,15 +125,9 @@ void setup() {
   float modifyDivY = appHeight * 260 / paperHeight;
   float modifyDivWidth = appWidth * 20 / paperWidth;
   float modifyDivHeight = appHeight * 10 / paperHeight;
-
-
   //
   //Text Setup, includes text & font variables
-  //
-
-  //
   //Literal Text ... String Variables
-
   songTitle[0] = "Swim";
   songTitle[1] = "Friends";
   songTitle[2] = "Into It";
@@ -141,7 +135,6 @@ void setup() {
   String modifyText = "Modify";
   String searchText = "Search Lyric";
   String exitText = "X";
-
   //
   //Font Size Variables, corrleated with DIV-Height Variables
   fontSize1 = songTitleDivHeight;
@@ -149,34 +142,30 @@ void setup() {
   float fontSize3 = modifyDivHeight;
   float fontSize4 = searchDivHeight;
   float fontSize5 = exitDivHeight;
-
   //
   //2D Music Symbol Variables
   //
   buttonDivWidth = appWidth * 3.0/17.5;
   buttonDivHeight = appHeight * 3.0/35.0;
   buttonDivY = appHeight * 28.5/35.0;
-
   // Button Positions
   skipBackDivX = appWidth * 0.4/17.5;
   rewindDivX = appWidth * 3.8/17.5;
   pauseDivX = appWidth * 7.25/17.5;
   fastForwardDivX = appWidth * 10.7/17.5;
   skipForwardDivX = appWidth * 14.1/17.5;
-
   // Skip Back Symbol DIVs
   skipBackBarDivX = skipBackDivX + buttonDivWidth * 1.0/6.0;
   skipBackBarDivY = buttonDivY + buttonDivHeight * 1.0/5.0;
   skipBackBarDivWidth = buttonDivWidth * 1.0/10.0;
   skipBackBarDivHeight = buttonDivHeight * 3.0/5.0;
-
+ 
   skipBackTriangleDivX1 = skipBackDivX + buttonDivWidth * 5.0/6.0;
   skipBackTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
   skipBackTriangleDivX2 = skipBackDivX + buttonDivWidth * 1.0/3.0;
   skipBackTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
   skipBackTriangleDivX3 = skipBackDivX + buttonDivWidth * 5.0/6.0;
   skipBackTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
-
   // Rewind Symbol DIVs
   rewindTriangleDivX1 = rewindDivX + buttonDivWidth * 1.0/2.0;
   rewindTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
@@ -191,7 +180,6 @@ void setup() {
   rewindTriangleDivY5 = buttonDivY + buttonDivHeight * 1.0/2.0;
   rewindTriangleDivX6 = rewindDivX + buttonDivWidth * 9.0/10.0;
   rewindTriangleDivY6 = buttonDivY + buttonDivHeight * 4.0/5.0;
-
   // Pause Symbol DIVs
   pauseBarDivX1 = pauseDivX + buttonDivWidth * 1.0/4.0;
   pauseBarDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
@@ -202,7 +190,6 @@ void setup() {
   pauseBarDivY2 = buttonDivY + buttonDivHeight * 1.0/5.0;
   pauseBarDivWidth2 = buttonDivWidth * 1.0/6.0;
   pauseBarDivHeight2 = buttonDivHeight * 3.0/5.0;
-
   // Fast Forward Symbol DIVs
   fastForwardTriangleDivX1 = fastForwardDivX + buttonDivWidth * 1.0/10.0;
   fastForwardTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
@@ -217,7 +204,6 @@ void setup() {
   fastForwardTriangleDivY5 = buttonDivY + buttonDivHeight * 1.0/2.0;
   fastForwardTriangleDivX6 = fastForwardDivX + buttonDivWidth * 1.0/2.0;
   fastForwardTriangleDivY6 = buttonDivY + buttonDivHeight * 4.0/5.0;
-
   // Skip Forward Symbol DIVs
   skipForwardTriangleDivX1 = skipForwardDivX + buttonDivWidth * 1.0/6.0;
   skipForwardTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
