@@ -58,6 +58,17 @@ float fontSize1;
 PFont font;
 
 boolean pauseButtonPressed = false;
+
+float skipBackBarDivX, skipBackBarDivY, skipBackBarDivWidth, skipBackBarDivHeight;
+float skipBackTriangleDivX1, skipBackTriangleDivY1, skipBackTriangleDivX2, skipBackTriangleDivY2, skipBackTriangleDivX3, skipBackTriangleDivY3;
+float rewindTriangleDivX1, rewindTriangleDivY1, rewindTriangleDivX2, rewindTriangleDivY2, rewindTriangleDivX3, rewindTriangleDivY3;
+float rewindTriangleDivX4, rewindTriangleDivY4, rewindTriangleDivX5, rewindTriangleDivY5, rewindTriangleDivX6, rewindTriangleDivY6;
+float pauseBarDivX1, pauseBarDivY1, pauseBarDivWidth1, pauseBarDivHeight1;
+float pauseBarDivX2, pauseBarDivY2, pauseBarDivWidth2, pauseBarDivHeight2;
+float fastForwardTriangleDivX1, fastForwardTriangleDivY1, fastForwardTriangleDivX2, fastForwardTriangleDivY2, fastForwardTriangleDivX3, fastForwardTriangleDivY3;
+float fastForwardTriangleDivX4, fastForwardTriangleDivY4, fastForwardTriangleDivX5, fastForwardTriangleDivY5, fastForwardTriangleDivX6, fastForwardTriangleDivY6;
+float skipForwardTriangleDivX1, skipForwardTriangleDivY1, skipForwardTriangleDivX2, skipForwardTriangleDivY2, skipForwardTriangleDivX3, skipForwardTriangleDivY3;
+float skipForwardBarDivX, skipForwardBarDivY, skipForwardBarDivWidth, skipForwardBarDivHeight;
 //
 void setup() {
 
@@ -154,71 +165,71 @@ void setup() {
   skipForwardDivX = appWidth * 14.1/17.5;
 
   // Skip Back Symbol DIVs
-  float skipBackBarDivX = skipBackDivX + buttonDivWidth * 1.0/6.0;
-  float skipBackBarDivY = buttonDivY + buttonDivHeight * 1.0/5.0;
-  float skipBackBarDivWidth = buttonDivWidth * 1.0/10.0;
-  float skipBackBarDivHeight = buttonDivHeight * 3.0/5.0;
+  skipBackBarDivX = skipBackDivX + buttonDivWidth * 1.0/6.0;
+  skipBackBarDivY = buttonDivY + buttonDivHeight * 1.0/5.0;
+  skipBackBarDivWidth = buttonDivWidth * 1.0/10.0;
+  skipBackBarDivHeight = buttonDivHeight * 3.0/5.0;
 
-  float skipBackTriangleDivX1 = skipBackDivX + buttonDivWidth * 5.0/6.0;
-  float skipBackTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
-  float skipBackTriangleDivX2 = skipBackDivX + buttonDivWidth * 1.0/3.0;
-  float skipBackTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
-  float skipBackTriangleDivX3 = skipBackDivX + buttonDivWidth * 5.0/6.0;
-  float skipBackTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
+  skipBackTriangleDivX1 = skipBackDivX + buttonDivWidth * 5.0/6.0;
+  skipBackTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  skipBackTriangleDivX2 = skipBackDivX + buttonDivWidth * 1.0/3.0;
+  skipBackTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  skipBackTriangleDivX3 = skipBackDivX + buttonDivWidth * 5.0/6.0;
+  skipBackTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
 
   // Rewind Symbol DIVs
-  float rewindTriangleDivX1 = rewindDivX + buttonDivWidth * 1.0/2.0;
-  float rewindTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
-  float rewindTriangleDivX2 = rewindDivX + buttonDivWidth * 1.0/10.0;
-  float rewindTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
-  float rewindTriangleDivX3 = rewindDivX + buttonDivWidth * 1.0/2.0;
-  float rewindTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
+  rewindTriangleDivX1 = rewindDivX + buttonDivWidth * 1.0/2.0;
+  rewindTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  rewindTriangleDivX2 = rewindDivX + buttonDivWidth * 1.0/10.0;
+  rewindTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  rewindTriangleDivX3 = rewindDivX + buttonDivWidth * 1.0/2.0;
+  rewindTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
 
-  float rewindTriangleDivX4 = rewindDivX + buttonDivWidth * 9.0/10.0;
-  float rewindTriangleDivY4 = buttonDivY + buttonDivHeight * 1.0/5.0;
-  float rewindTriangleDivX5 = rewindDivX + buttonDivWidth * 1.0/2.0;
-  float rewindTriangleDivY5 = buttonDivY + buttonDivHeight * 1.0/2.0;
-  float rewindTriangleDivX6 = rewindDivX + buttonDivWidth * 9.0/10.0;
-  float rewindTriangleDivY6 = buttonDivY + buttonDivHeight * 4.0/5.0;
+  rewindTriangleDivX4 = rewindDivX + buttonDivWidth * 9.0/10.0;
+  rewindTriangleDivY4 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  rewindTriangleDivX5 = rewindDivX + buttonDivWidth * 1.0/2.0;
+  rewindTriangleDivY5 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  rewindTriangleDivX6 = rewindDivX + buttonDivWidth * 9.0/10.0;
+  rewindTriangleDivY6 = buttonDivY + buttonDivHeight * 4.0/5.0;
 
   // Pause Symbol DIVs
-  float pauseBarDivX1 = pauseDivX + buttonDivWidth * 1.0/4.0;
-  float pauseBarDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
-  float pauseBarDivWidth1 = buttonDivWidth * 1.0/6.0;
-  float pauseBarDivHeight1 = buttonDivHeight * 3.0/5.0;
+  pauseBarDivX1 = pauseDivX + buttonDivWidth * 1.0/4.0;
+  pauseBarDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  pauseBarDivWidth1 = buttonDivWidth * 1.0/6.0;
+  pauseBarDivHeight1 = buttonDivHeight * 3.0/5.0;
 
-  float pauseBarDivX2 = pauseDivX + buttonDivWidth * 7.0/12.0;
-  float pauseBarDivY2 = buttonDivY + buttonDivHeight * 1.0/5.0;
-  float pauseBarDivWidth2 = buttonDivWidth * 1.0/6.0;
-  float pauseBarDivHeight2 = buttonDivHeight * 3.0/5.0;
+  pauseBarDivX2 = pauseDivX + buttonDivWidth * 7.0/12.0;
+  pauseBarDivY2 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  pauseBarDivWidth2 = buttonDivWidth * 1.0/6.0;
+  pauseBarDivHeight2 = buttonDivHeight * 3.0/5.0;
 
   // Fast Forward Symbol DIVs
-  float fastForwardTriangleDivX1 = fastForwardDivX + buttonDivWidth * 1.0/10.0;
-  float fastForwardTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
-  float fastForwardTriangleDivX2 = fastForwardDivX + buttonDivWidth * 1.0/2.0;
-  float fastForwardTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
-  float fastForwardTriangleDivX3 = fastForwardDivX + buttonDivWidth * 1.0/10.0;
-  float fastForwardTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
+  fastForwardTriangleDivX1 = fastForwardDivX + buttonDivWidth * 1.0/10.0;
+  fastForwardTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  fastForwardTriangleDivX2 = fastForwardDivX + buttonDivWidth * 1.0/2.0;
+  fastForwardTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  fastForwardTriangleDivX3 = fastForwardDivX + buttonDivWidth * 1.0/10.0;
+  fastForwardTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
 
-  float fastForwardTriangleDivX4 = fastForwardDivX + buttonDivWidth * 1.0/2.0;
-  float fastForwardTriangleDivY4 = buttonDivY + buttonDivHeight * 1.0/5.0;
-  float fastForwardTriangleDivX5 = fastForwardDivX + buttonDivWidth * 9.0/10.0;
-  float fastForwardTriangleDivY5 = buttonDivY + buttonDivHeight * 1.0/2.0;
-  float fastForwardTriangleDivX6 = fastForwardDivX + buttonDivWidth * 1.0/2.0;
-  float fastForwardTriangleDivY6 = buttonDivY + buttonDivHeight * 4.0/5.0;
+  fastForwardTriangleDivX4 = fastForwardDivX + buttonDivWidth * 1.0/2.0;
+  fastForwardTriangleDivY4 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  fastForwardTriangleDivX5 = fastForwardDivX + buttonDivWidth * 9.0/10.0;
+  fastForwardTriangleDivY5 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  fastForwardTriangleDivX6 = fastForwardDivX + buttonDivWidth * 1.0/2.0;
+  fastForwardTriangleDivY6 = buttonDivY + buttonDivHeight * 4.0/5.0;
 
   // Skip Forward Symbol DIVs
-  float skipForwardTriangleDivX1 = skipForwardDivX + buttonDivWidth * 1.0/6.0;
-  float skipForwardTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
-  float skipForwardTriangleDivX2 = skipForwardDivX + buttonDivWidth * 2.0/3.0;
-  float skipForwardTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
-  float skipForwardTriangleDivX3 = skipForwardDivX + buttonDivWidth * 1.0/6.0;
-  float skipForwardTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
+  skipForwardTriangleDivX1 = skipForwardDivX + buttonDivWidth * 1.0/6.0;
+  skipForwardTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
+  skipForwardTriangleDivX2 = skipForwardDivX + buttonDivWidth * 2.0/3.0;
+  skipForwardTriangleDivY2 = buttonDivY + buttonDivHeight * 1.0/2.0;
+  skipForwardTriangleDivX3 = skipForwardDivX + buttonDivWidth * 1.0/6.0;
+  skipForwardTriangleDivY3 = buttonDivY + buttonDivHeight * 4.0/5.0;
 
-  float skipForwardBarDivX = skipForwardDivX + buttonDivWidth * 3.0/4.0;
-  float skipForwardBarDivY = buttonDivY + buttonDivHeight * 1.0/5.0;
-  float skipForwardBarDivWidth = buttonDivWidth * 1.0/10.0;
-  float skipForwardBarDivHeight = buttonDivHeight * 3.0/5.0;
+  skipForwardBarDivX = skipForwardDivX + buttonDivWidth * 3.0/4.0;
+  skipForwardBarDivY = buttonDivY + buttonDivHeight * 1.0/5.0;
+  skipForwardBarDivWidth = buttonDivWidth * 1.0/10.0;
+  skipForwardBarDivHeight = buttonDivHeight * 3.0/5.0;
   //
   //Directory or Pathway to Images
   String upArrow = "..";
@@ -304,29 +315,6 @@ void setup() {
   rect(artistDivX, artistDivY, artistDivWidth, artistDivHeight);
   rect(progressBarDivX, progressBarDivY, progressBarDivWidth, progressBarDivHeight);
   rect(modifyDivX, modifyDivY, modifyDivWidth, modifyDivHeight);
-  //
-  //2D music Symbol Shapes, 2D shapes needed to draw
-  //
-  rect(skipBackDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
-  rect(rewindDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
-  rect(pauseDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
-  rect(fastForwardDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
-  rect(skipForwardDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
-
-  rect(skipBackBarDivX, skipBackBarDivY, skipBackBarDivWidth, skipBackBarDivHeight);
-  triangle(skipBackTriangleDivX1, skipBackTriangleDivY1, skipBackTriangleDivX2, skipBackTriangleDivY2, skipBackTriangleDivX3, skipBackTriangleDivY3);
-
-  triangle(rewindTriangleDivX1, rewindTriangleDivY1, rewindTriangleDivX2, rewindTriangleDivY2, rewindTriangleDivX3, rewindTriangleDivY3);
-  triangle(rewindTriangleDivX4, rewindTriangleDivY4, rewindTriangleDivX5, rewindTriangleDivY5, rewindTriangleDivX6, rewindTriangleDivY6);
-
-  rect(pauseBarDivX1, pauseBarDivY1, pauseBarDivWidth1, pauseBarDivHeight1);
-  rect(pauseBarDivX2, pauseBarDivY2, pauseBarDivWidth2, pauseBarDivHeight2);
-
-  triangle(fastForwardTriangleDivX1, fastForwardTriangleDivY1, fastForwardTriangleDivX2, fastForwardTriangleDivY2, fastForwardTriangleDivX3, fastForwardTriangleDivY3);
-  triangle(fastForwardTriangleDivX4, fastForwardTriangleDivY4, fastForwardTriangleDivX5, fastForwardTriangleDivY5, fastForwardTriangleDivX6, fastForwardTriangleDivY6);
-
-  triangle(skipForwardTriangleDivX1, skipForwardTriangleDivY1, skipForwardTriangleDivX2, skipForwardTriangleDivY2, skipForwardTriangleDivX3, skipForwardTriangleDivY3);
-  rect(skipForwardBarDivX, skipForwardBarDivY, skipForwardBarDivWidth, skipForwardBarDivHeight);
   //
   //Drawing Text - Formatting Text Functions & Ink Variables
   color darkPurpleInk = #585062;
@@ -431,14 +419,13 @@ void setup() {
 void draw() {
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
   fill(255);
-  noStroke();
+  stroke(0); // Resetting stroke for the UI boxes
   rect(songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
 
   fill(#585062);
   textFont(font, fontSize1);
   text(songTitle[currentSong], songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
-  textFont(font, fontSize1);
-  text(songTitle[currentSong], songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
+
   PImage currentImage = image1;
 
   if (currentSong == 1) currentImage = image2;
@@ -451,6 +438,70 @@ void draw() {
     imageWidthAdjusted2,
     imageHeightAdjusted1
     );
+
+  //
+  stroke(0); 
+  // 1. Skip Back Button
+  if (mouseX > skipBackDivX && mouseX < skipBackDivX + buttonDivWidth && mouseY > buttonDivY && mouseY < buttonDivY + buttonDivHeight) {
+    fill(200);
+  } else {
+    fill(255);
+  }
+  rect(skipBackDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
+
+  // 2. Rewind Button
+  if (mouseX > rewindDivX && mouseX < rewindDivX + buttonDivWidth && mouseY > buttonDivY && mouseY < buttonDivY + buttonDivHeight) {
+    fill(200);
+  } else {
+    fill(255);
+  }
+  rect(rewindDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
+
+  // 3. Pause Button
+  if (mouseX > pauseDivX && mouseX < pauseDivX + buttonDivWidth && mouseY > buttonDivY && mouseY < buttonDivY + buttonDivHeight) {
+    fill(200);
+  } else {
+    fill(255);
+  }
+  rect(pauseDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
+
+  // 4. Fast Forward Button
+  if (mouseX > fastForwardDivX && mouseX < fastForwardDivX + buttonDivWidth && mouseY > buttonDivY && mouseY < buttonDivY + buttonDivHeight) {
+    fill(200);
+  } else {
+    fill(255);
+  }
+  rect(fastForwardDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
+
+  // 5. Skip Forward Button
+  if (mouseX > skipForwardDivX && mouseX < skipForwardDivX + buttonDivWidth && mouseY > buttonDivY && mouseY < buttonDivY + buttonDivHeight) {
+    fill(200);
+  } else {
+    fill(255);
+  }
+  rect(skipForwardDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
+  fill(0); 
+
+  // Skip Back Symbols
+  rect(skipBackBarDivX, skipBackBarDivY, skipBackBarDivWidth, skipBackBarDivHeight);
+  triangle(skipBackTriangleDivX1, skipBackTriangleDivY1, skipBackTriangleDivX2, skipBackTriangleDivY2, skipBackTriangleDivX3, skipBackTriangleDivY3);
+
+  // Rewind Symbols
+  triangle(rewindTriangleDivX1, rewindTriangleDivY1, rewindTriangleDivX2, rewindTriangleDivY2, rewindTriangleDivX3, rewindTriangleDivY3);
+  triangle(rewindTriangleDivX4, rewindTriangleDivY4, rewindTriangleDivX5, rewindTriangleDivY5, rewindTriangleDivX6, rewindTriangleDivY6);
+
+  // Pause Symbols
+  rect(pauseBarDivX1, pauseBarDivY1, pauseBarDivWidth1, pauseBarDivHeight1);
+  rect(pauseBarDivX2, pauseBarDivY2, pauseBarDivWidth2, pauseBarDivHeight2);
+
+  // Fast Forward Symbols
+  triangle(fastForwardTriangleDivX1, fastForwardTriangleDivY1, fastForwardTriangleDivX2, fastForwardTriangleDivY2, fastForwardTriangleDivX3, fastForwardTriangleDivY3);
+  triangle(fastForwardTriangleDivX4, fastForwardTriangleDivY4, fastForwardTriangleDivX5, fastForwardTriangleDivY5, fastForwardTriangleDivX6, fastForwardTriangleDivY6);
+
+  // Skip Forward Symbols
+  triangle(skipForwardTriangleDivX1, skipForwardTriangleDivY1, skipForwardTriangleDivX2, skipForwardTriangleDivY2, skipForwardTriangleDivX3, skipForwardTriangleDivY3);
+  rect(skipForwardBarDivX, skipForwardBarDivY, skipForwardBarDivWidth, skipForwardBarDivHeight);
+
 }//End Draw
 
 void mousePressed() {
