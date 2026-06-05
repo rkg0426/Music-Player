@@ -404,13 +404,19 @@ void setup() {
   float imageWidthAdjusted2 = imageDivWidth;
 
   float imageHeightAdjusted1 = ( imageWidth2 >= imageDivWidth ) ? imageWidthAdjusted2 / image2AspectRatio_GreatOne : imageWidthAdjusted2 * image2AspectRatio_GreatOne;
-
+  //
   while ( imageHeightAdjusted1 > imageDivHeight ) {
     imageWidthAdjusted2 *= 0.99;
     imageHeightAdjusted1 = imageWidthAdjusted2 / image2AspectRatio_GreatOne;
   }
+
+  PImage currentImage = image1;
+
+  if (currentSong == 1) currentImage = image2;
+  if (currentSong == 2) currentImage = image3;
+
   image(
-    image1,
+    currentImage,
     imageDivX + (imageDivWidth-imageWidthAdjusted2)/2,
     imageDivY + (imageDivHeight-imageHeightAdjusted1)/2,
     imageWidthAdjusted2,
@@ -471,6 +477,24 @@ void mousePressed() {
     if (currentSong < 0) currentSong = numberOfSongs - 1;
 
     playList[currentSong].play();
+  }
+  if (
+    mouseX > fastForwardDivX &&
+    mouseX < fastForwardDivX + buttonDivWidth &&
+    mouseY > buttonDivY &&
+    mouseY < buttonDivY + buttonDivHeight
+    ) {
+
+    playList[currentSong].skip(10000);
+  }
+  if (
+    mouseX > rewindDivX &&
+    mouseX < rewindDivX + buttonDivWidth &&
+    mouseY > buttonDivY &&
+    mouseY < buttonDivY + buttonDivHeight
+    ) {
+
+    playList[currentSong].skip(-10000);
   }
 }//End Mouse Pressed
 
