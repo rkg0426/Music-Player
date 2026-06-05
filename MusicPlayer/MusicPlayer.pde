@@ -405,7 +405,7 @@ void setup() {
 void draw() {
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
   fill(255);
-  stroke(0); // Resetting stroke for the UI boxes
+  stroke(0); 
   rect(songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
 
   fill(#585062);
