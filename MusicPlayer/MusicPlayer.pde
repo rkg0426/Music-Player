@@ -33,6 +33,11 @@ AudioPlayer[] soundEffects = new AudioPlayer[numberOfSoundEffect];
 
 int currentSong = numberOfSongs - numberOfSongs;
 //Music Button Variables
+float exitDivX;
+float exitDivY;
+float exitDivWidth;
+float exitDivHeight;
+
 float buttonDivWidth;
 float buttonDivHeight;
 float buttonDivY;
@@ -91,10 +96,10 @@ void setup() {
   float searchDivHeight = appHeight * 15 / paperHeight;
 
   //EXit DIV
-  float exitDivX = appWidth * 193 / paperWidth;
-  float exitDivY = appHeight * 3 / paperHeight;
-  float exitDivWidth = appWidth * 20 / paperWidth;
-  float exitDivHeight = appHeight * 13 / paperHeight;
+   exitDivX = appWidth * 193 / paperWidth;
+   exitDivY = appHeight * 3 / paperHeight;
+   exitDivWidth = appWidth * 20 / paperWidth;
+   exitDivHeight = appHeight * 13 / paperHeight;
 
   //Image DIV
   imageDivX = appWidth * 65 / paperWidth;
@@ -159,7 +164,7 @@ void setup() {
   skipBackBarDivY = buttonDivY + buttonDivHeight * 1.0/5.0;
   skipBackBarDivWidth = buttonDivWidth * 1.0/10.0;
   skipBackBarDivHeight = buttonDivHeight * 3.0/5.0;
- 
+
   skipBackTriangleDivX1 = skipBackDivX + buttonDivWidth * 5.0/6.0;
   skipBackTriangleDivY1 = buttonDivY + buttonDivHeight * 1.0/5.0;
   skipBackTriangleDivX2 = skipBackDivX + buttonDivWidth * 1.0/3.0;
@@ -405,7 +410,7 @@ void setup() {
 void draw() {
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
   fill(255);
-  stroke(0); 
+  stroke(0);
   rect(songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
 
   fill(#585062);
@@ -426,7 +431,7 @@ void draw() {
     );
 
   //
-  stroke(0); 
+  stroke(0);
   // 1. Skip Back Button
   if (mouseX > skipBackDivX && mouseX < skipBackDivX + buttonDivWidth && mouseY > buttonDivY && mouseY < buttonDivY + buttonDivHeight) {
     fill(200);
@@ -466,7 +471,7 @@ void draw() {
     fill(255);
   }
   rect(skipForwardDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
-  fill(0); 
+  fill(0);
 
   // Skip Back Symbols
   rect(skipBackBarDivX, skipBackBarDivY, skipBackBarDivWidth, skipBackBarDivHeight);
@@ -477,8 +482,23 @@ void draw() {
   triangle(rewindTriangleDivX4, rewindTriangleDivY4, rewindTriangleDivX5, rewindTriangleDivY5, rewindTriangleDivX6, rewindTriangleDivY6);
 
   // Pause Symbols
-  rect(pauseBarDivX1, pauseBarDivY1, pauseBarDivWidth1, pauseBarDivHeight1);
-  rect(pauseBarDivX2, pauseBarDivY2, pauseBarDivWidth2, pauseBarDivHeight2);
+  if (pauseButtonPressed == false) {
+
+    rect(pauseBarDivX1, pauseBarDivY1, pauseBarDivWidth1, pauseBarDivHeight1);
+    rect(pauseBarDivX2, pauseBarDivY2, pauseBarDivWidth2, pauseBarDivHeight2);
+  } else {
+
+    triangle(
+      pauseDivX + buttonDivWidth*1.0/3.0,
+      buttonDivY + buttonDivHeight*1.0/5.0,
+
+      pauseDivX + buttonDivWidth*1.0/3.0,
+      buttonDivY + buttonDivHeight*4.0/5.0,
+
+      pauseDivX + buttonDivWidth*2.0/3.0,
+      buttonDivY + buttonDivHeight*1.0/2.0
+      );
+  }
 
   // Fast Forward Symbols
   triangle(fastForwardTriangleDivX1, fastForwardTriangleDivY1, fastForwardTriangleDivX2, fastForwardTriangleDivY2, fastForwardTriangleDivX3, fastForwardTriangleDivY3);
@@ -503,129 +523,131 @@ void mousePressed() {
     if (playList[currentSong].isPlaying()) {
 
       playList[currentSong].pause();
+      pauseButtonPressed = true;
     } else {
 
       playList[currentSong].play();
+      pauseButtonPressed = false;
     }
-  }
-  if (
-    mouseX > skipForwardDivX &&
-    mouseX < skipForwardDivX + buttonDivWidth &&
-    mouseY > buttonDivY &&
-    mouseY < buttonDivY + buttonDivHeight
-    ) {
-
-    playList[currentSong].pause();
-    playList[currentSong].rewind();
-
-    currentSong++;
-
-    if (currentSong >= numberOfSongs) currentSong = 0;
-
-    playList[currentSong].play();
-  }
-  if (
-    mouseX > skipBackDivX &&
-    mouseX < skipBackDivX + buttonDivWidth &&
-    mouseY > buttonDivY &&
-    mouseY < buttonDivY + buttonDivHeight
-    ) {
-
-    playList[currentSong].pause();
-    playList[currentSong].rewind();
-
-    currentSong--;
-
-    if (currentSong < 0) currentSong = numberOfSongs - 1;
-
-    playList[currentSong].play();
-  }
-  if (
-    mouseX > fastForwardDivX &&
-    mouseX < fastForwardDivX + buttonDivWidth &&
-    mouseY > buttonDivY &&
-    mouseY < buttonDivY + buttonDivHeight
-    ) {
-
-    playList[currentSong].skip(10000);
-  }
-  if (
-    mouseX > rewindDivX &&
-    mouseX < rewindDivX + buttonDivWidth &&
-    mouseY > buttonDivY &&
-    mouseY < buttonDivY + buttonDivHeight
-    ) {
-
-    playList[currentSong].skip(-10000);
-  }
-}//End Mouse Pressed
-
-void keyPressed() {
-  //Key Board Short Cuts for Music Features, built from limited Minim Library Functions
-
-  if (key=='P' || key=='p') playList[currentSong].loop(0);
-
-  if (key=='O' || key=='o') {
-
-    if (playList[currentSong].isPlaying()) {
+    }
+    if (
+      mouseX > skipForwardDivX &&
+      mouseX < skipForwardDivX + buttonDivWidth &&
+      mouseY > buttonDivY &&
+      mouseY < buttonDivY + buttonDivHeight
+      ) {
 
       playList[currentSong].pause();
-    } else {
-
-      playList[currentSong].play();
-    }
-  }
-
-  if (key=='S' || key=='s') {
-
-    if (playList[currentSong].isPlaying()) {
-
-      playList[currentSong].pause();
-    } else {
-
       playList[currentSong].rewind();
+
+      currentSong++;
+
+      if (currentSong >= numberOfSongs) currentSong = 0;
+
+      playList[currentSong].play();
     }
-  }
+    if (
+      mouseX > skipBackDivX &&
+      mouseX < skipBackDivX + buttonDivWidth &&
+      mouseY > buttonDivY &&
+      mouseY < buttonDivY + buttonDivHeight
+      ) {
 
-  if (key=='L' || key=='l') playList[currentSong].loop(1);
+      playList[currentSong].pause();
+      playList[currentSong].rewind();
 
-  if (key=='K' || key=='k') playList[currentSong].loop();
+      currentSong--;
 
-  if (key=='F' || key=='f') playList[currentSong].skip(10000);
-  if (keyCode == RIGHT) {
+      if (currentSong < 0) currentSong = numberOfSongs - 1;
 
-    playList[currentSong].pause();
-    playList[currentSong].rewind();
-
-    currentSong++;
-
-    if (currentSong >= numberOfSongs) currentSong = 0;
-
-    playList[currentSong].play();
-  }
-  if (keyCode == LEFT) {
-
-    playList[currentSong].pause();
-    playList[currentSong].rewind();
-
-    currentSong--;
-
-    if (currentSong < 0) currentSong = numberOfSongs - 1;
-
-    playList[currentSong].play();
-  }
-  if (key=='R' || key=='r') playList[currentSong].skip(-10000);
-
-  if (key=='W' || key=='w') {
-
-    if (playList[currentSong].isMuted()) {
-
-      playList[currentSong].unmute();
-    } else {
-
-      playList[currentSong].mute();
+      playList[currentSong].play();
     }
-  }
-}//End Key Pressed
+    if (
+      mouseX > fastForwardDivX &&
+      mouseX < fastForwardDivX + buttonDivWidth &&
+      mouseY > buttonDivY &&
+      mouseY < buttonDivY + buttonDivHeight
+      ) {
 
-//End MAIN Program
+      playList[currentSong].skip(10000);
+    }
+    if (
+      mouseX > rewindDivX &&
+      mouseX < rewindDivX + buttonDivWidth &&
+      mouseY > buttonDivY &&
+      mouseY < buttonDivY + buttonDivHeight
+      ) {
+
+      playList[currentSong].skip(-10000);
+    }
+  }//End Mouse Pressed
+
+  void keyPressed() {
+    //Key Board Short Cuts for Music Features, built from limited Minim Library Functions
+
+    if (key=='P' || key=='p') playList[currentSong].loop(0);
+
+    if (key=='O' || key=='o') {
+
+      if (playList[currentSong].isPlaying()) {
+
+        playList[currentSong].pause();
+      } else {
+
+        playList[currentSong].play();
+      }
+    }
+
+    if (key=='S' || key=='s') {
+
+      if (playList[currentSong].isPlaying()) {
+
+        playList[currentSong].pause();
+      } else {
+
+        playList[currentSong].rewind();
+      }
+    }
+
+    if (key=='L' || key=='l') playList[currentSong].loop(1);
+
+    if (key=='K' || key=='k') playList[currentSong].loop();
+
+    if (key=='F' || key=='f') playList[currentSong].skip(10000);
+    if (keyCode == RIGHT) {
+
+      playList[currentSong].pause();
+      playList[currentSong].rewind();
+
+      currentSong++;
+
+      if (currentSong >= numberOfSongs) currentSong = 0;
+
+      playList[currentSong].play();
+    }
+    if (keyCode == LEFT) {
+
+      playList[currentSong].pause();
+      playList[currentSong].rewind();
+
+      currentSong--;
+
+      if (currentSong < 0) currentSong = numberOfSongs - 1;
+
+      playList[currentSong].play();
+    }
+    if (key=='R' || key=='r') playList[currentSong].skip(-10000);
+
+    if (key=='W' || key=='w') {
+
+      if (playList[currentSong].isMuted()) {
+
+        playList[currentSong].unmute();
+      } else {
+
+        playList[currentSong].mute();
+      }
+    }
+  }//End Key Pressed
+
+  //End MAIN Program
