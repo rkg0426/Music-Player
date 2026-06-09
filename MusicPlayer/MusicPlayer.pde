@@ -96,10 +96,10 @@ void setup() {
   float searchDivHeight = appHeight * 15 / paperHeight;
 
   //EXit DIV
-   exitDivX = appWidth * 193 / paperWidth;
-   exitDivY = appHeight * 3 / paperHeight;
-   exitDivWidth = appWidth * 20 / paperWidth;
-   exitDivHeight = appHeight * 13 / paperHeight;
+  exitDivX = appWidth * 193 / paperWidth;
+  exitDivY = appHeight * 3 / paperHeight;
+  exitDivWidth = appWidth * 20 / paperWidth;
+  exitDivHeight = appHeight * 13 / paperHeight;
 
   //Image DIV
   imageDivX = appWidth * 65 / paperWidth;
@@ -417,6 +417,8 @@ void draw() {
   textFont(font, fontSize1);
   text(songTitle[currentSong], songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
 
+  rect(exitDivX, exitDivY, exitDivWidth, exitDivHeight);
+
   PImage currentImage = image1;
 
   if (currentSong == 1) currentImage = image2;
@@ -472,6 +474,19 @@ void draw() {
   }
   rect(skipForwardDivX, buttonDivY, buttonDivWidth, buttonDivHeight);
   fill(0);
+  // 6. Exit Button
+  if (mouseX > exitDivX && mouseX < exitDivX + exitDivWidth && mouseY > exitDivY && mouseY < exitDivY + exitDivHeight) {
+    fill(200);
+  } else {
+    fill(255);
+  }
+  rect(exitDivX, exitDivY, exitDivWidth, exitDivHeight);
+
+  // Draw X
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textFont(font, exitDivHeight);
+  text("X", exitDivX, exitDivY, exitDivWidth, exitDivHeight);
 
   // Skip Back Symbols
   rect(skipBackBarDivX, skipBackBarDivY, skipBackBarDivWidth, skipBackBarDivHeight);
@@ -507,7 +522,6 @@ void draw() {
   // Skip Forward Symbols
   triangle(skipForwardTriangleDivX1, skipForwardTriangleDivY1, skipForwardTriangleDivX2, skipForwardTriangleDivY2, skipForwardTriangleDivX3, skipForwardTriangleDivY3);
   rect(skipForwardBarDivX, skipForwardBarDivY, skipForwardBarDivWidth, skipForwardBarDivHeight);
-
 }//End Draw
 
 void mousePressed() {
@@ -529,125 +543,134 @@ void mousePressed() {
       playList[currentSong].play();
       pauseButtonPressed = false;
     }
-    }
-    if (
-      mouseX > skipForwardDivX &&
-      mouseX < skipForwardDivX + buttonDivWidth &&
-      mouseY > buttonDivY &&
-      mouseY < buttonDivY + buttonDivHeight
-      ) {
+  }
+  if (
+    mouseX > skipForwardDivX &&
+    mouseX < skipForwardDivX + buttonDivWidth &&
+    mouseY > buttonDivY &&
+    mouseY < buttonDivY + buttonDivHeight
+    ) {
+
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+
+    currentSong++;
+
+    if (currentSong >= numberOfSongs) currentSong = 0;
+
+    playList[currentSong].play();
+  }
+  if (
+    mouseX > skipBackDivX &&
+    mouseX < skipBackDivX + buttonDivWidth &&
+    mouseY > buttonDivY &&
+    mouseY < buttonDivY + buttonDivHeight
+    ) {
+
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+
+    currentSong--;
+
+    if (currentSong < 0) currentSong = numberOfSongs - 1;
+
+    playList[currentSong].play();
+  }
+  if (
+    mouseX > fastForwardDivX &&
+    mouseX < fastForwardDivX + buttonDivWidth &&
+    mouseY > buttonDivY &&
+    mouseY < buttonDivY + buttonDivHeight
+    ) {
+
+    playList[currentSong].skip(10000);
+  }
+  if (
+    mouseX > rewindDivX &&
+    mouseX < rewindDivX + buttonDivWidth &&
+    mouseY > buttonDivY &&
+    mouseY < buttonDivY + buttonDivHeight
+    ) {
+
+    playList[currentSong].skip(-10000);
+  }
+  if (
+    mouseX > exitDivX &&
+    mouseX < exitDivX + exitDivWidth &&
+    mouseY > exitDivY &&
+    mouseY < exitDivY + exitDivHeight
+    ) {
+
+    exit();
+  }
+}//End Mouse Pressed
+
+void keyPressed() {
+  //Key Board Short Cuts for Music Features, built from limited Minim Library Functions
+
+  if (key=='P' || key=='p') playList[currentSong].loop(0);
+
+  if (key=='O' || key=='o') {
+
+    if (playList[currentSong].isPlaying()) {
 
       playList[currentSong].pause();
-      playList[currentSong].rewind();
-
-      currentSong++;
-
-      if (currentSong >= numberOfSongs) currentSong = 0;
+    } else {
 
       playList[currentSong].play();
     }
-    if (
-      mouseX > skipBackDivX &&
-      mouseX < skipBackDivX + buttonDivWidth &&
-      mouseY > buttonDivY &&
-      mouseY < buttonDivY + buttonDivHeight
-      ) {
+  }
+
+  if (key=='S' || key=='s') {
+
+    if (playList[currentSong].isPlaying()) {
 
       playList[currentSong].pause();
+    } else {
+
       playList[currentSong].rewind();
-
-      currentSong--;
-
-      if (currentSong < 0) currentSong = numberOfSongs - 1;
-
-      playList[currentSong].play();
     }
-    if (
-      mouseX > fastForwardDivX &&
-      mouseX < fastForwardDivX + buttonDivWidth &&
-      mouseY > buttonDivY &&
-      mouseY < buttonDivY + buttonDivHeight
-      ) {
+  }
 
-      playList[currentSong].skip(10000);
+  if (key=='L' || key=='l') playList[currentSong].loop(1);
+
+  if (key=='K' || key=='k') playList[currentSong].loop();
+
+  if (key=='F' || key=='f') playList[currentSong].skip(10000);
+  if (keyCode == RIGHT) {
+
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+
+    currentSong++;
+
+    if (currentSong >= numberOfSongs) currentSong = 0;
+
+    playList[currentSong].play();
+  }
+  if (keyCode == LEFT) {
+
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+
+    currentSong--;
+
+    if (currentSong < 0) currentSong = numberOfSongs - 1;
+
+    playList[currentSong].play();
+  }
+  if (key=='R' || key=='r') playList[currentSong].skip(-10000);
+
+  if (key=='W' || key=='w') {
+
+    if (playList[currentSong].isMuted()) {
+
+      playList[currentSong].unmute();
+    } else {
+
+      playList[currentSong].mute();
     }
-    if (
-      mouseX > rewindDivX &&
-      mouseX < rewindDivX + buttonDivWidth &&
-      mouseY > buttonDivY &&
-      mouseY < buttonDivY + buttonDivHeight
-      ) {
+  }
+}//End Key Pressed
 
-      playList[currentSong].skip(-10000);
-    }
-  }//End Mouse Pressed
-
-  void keyPressed() {
-    //Key Board Short Cuts for Music Features, built from limited Minim Library Functions
-
-    if (key=='P' || key=='p') playList[currentSong].loop(0);
-
-    if (key=='O' || key=='o') {
-
-      if (playList[currentSong].isPlaying()) {
-
-        playList[currentSong].pause();
-      } else {
-
-        playList[currentSong].play();
-      }
-    }
-
-    if (key=='S' || key=='s') {
-
-      if (playList[currentSong].isPlaying()) {
-
-        playList[currentSong].pause();
-      } else {
-
-        playList[currentSong].rewind();
-      }
-    }
-
-    if (key=='L' || key=='l') playList[currentSong].loop(1);
-
-    if (key=='K' || key=='k') playList[currentSong].loop();
-
-    if (key=='F' || key=='f') playList[currentSong].skip(10000);
-    if (keyCode == RIGHT) {
-
-      playList[currentSong].pause();
-      playList[currentSong].rewind();
-
-      currentSong++;
-
-      if (currentSong >= numberOfSongs) currentSong = 0;
-
-      playList[currentSong].play();
-    }
-    if (keyCode == LEFT) {
-
-      playList[currentSong].pause();
-      playList[currentSong].rewind();
-
-      currentSong--;
-
-      if (currentSong < 0) currentSong = numberOfSongs - 1;
-
-      playList[currentSong].play();
-    }
-    if (key=='R' || key=='r') playList[currentSong].skip(-10000);
-
-    if (key=='W' || key=='w') {
-
-      if (playList[currentSong].isMuted()) {
-
-        playList[currentSong].unmute();
-      } else {
-
-        playList[currentSong].mute();
-      }
-    }
-  }//End Key Pressed
-
-  //End MAIN Program
+//End MAIN Program
